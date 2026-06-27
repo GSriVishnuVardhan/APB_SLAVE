@@ -2,7 +2,7 @@
 
 Reusable **AMBA APB3 slave** with a 20-register bank, configurable wait states, optional protocol FSM, and a self-checking SystemVerilog testbench verified with Verilator.
 
-Designed as a portfolio-quality RTL block for freelance IP delivery and SoC integration practice.
+Designed as a portfolio-quality RTL block for SoC integration.
 
 ## Verification status
 
