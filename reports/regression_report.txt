@@ -1,0 +1,18 @@
+APB3 Slave Regression Report
+=============================
+Date: simulation end
+Simulator: Verilator
+USE_APB_FSM: 1
+
+Tests: ALL PASSED
+Scoreboard errors: 0
+Protocol violations: 0
+Functional coverage: 100.0% (goal >= 95%)
+Coverage goal: PASS
+
+Exit criteria:
+  [ PASS ] No scoreboard mismatches
+  [ PASS ] No protocol violations
+  [ PASS ] Coverage >= 95%
+
+Overall: PASS

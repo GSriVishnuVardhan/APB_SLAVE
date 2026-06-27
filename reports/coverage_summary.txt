@@ -1,0 +1,32 @@
+APB3 Slave Functional Coverage Summary
+======================================
+Register bins (20):
+  reg[00]:  HIT
+  reg[01]:  HIT
+  reg[02]:  HIT
+  reg[03]:  HIT
+  reg[04]:  HIT
+  reg[05]:  HIT
+  reg[06]:  HIT
+  reg[07]:  HIT
+  reg[08]:  HIT
+  reg[09]:  HIT
+  reg[10]:  HIT
+  reg[11]:  HIT
+  reg[12]:  HIT
+  reg[13]:  HIT
+  reg[14]:  HIT
+  reg[15]:  HIT
+  reg[16]:  HIT
+  reg[17]:  HIT
+  reg[18]:  HIT
+  reg[19]:  HIT
+Read transaction:   HIT
+Write transaction:  HIT
+Error path:         HIT
+Reset path:         HIT
+
+Total bins hit: 24 / 24
+Coverage: 100.0%
+Goal: >= 95.0%
+Result: PASS

@@ -1,14 +1,12 @@
-# Verilator build artifacts
+# Verilator / simulator build artifacts
 sim/obj_dir/
 **/obj_dir/
-
-# Optional: regenerate reports on each run
-# reports/sim.log
-# reports/regression_report.txt
-# reports/coverage_summary.txt
 
 # Editor / OS
 .vscode/
 *.swp
 .DS_Store
 Thumbs.db
+
+# Local dev history (optional milestone snapshots — not part of IP deliverable)
+archive/

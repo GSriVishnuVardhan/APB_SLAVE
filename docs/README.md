@@ -1,11 +1,11 @@
-# Week 5 — APB3 Slave Peripheral
+# APB3 Slave Peripheral — Project Docs
 
 ## Milestones
 
 | Milestone | Status | Description |
 |-----------|--------|-------------|
 | M0 | Done | Design + verification specs (`design_spec.txt`, `verification_spec.txt`) |
-| M1 | Done | Minimal prototype (see `archive/phase-0` … `phase-1`) |
+| M1 | Done | Minimal RTL + testbench MVP |
 | M2 | Done | Full RTL, driver/monitor/scoreboard, tests 1–10 |
 | M3 | Done | Functional coverage, protocol checker, regression + coverage reports |
 
@@ -17,7 +17,6 @@ rtl/      DUT (apb_slave_top, decoder, register_bank, apb_resp)
 tb/       Testbench, scoreboard, coverage, protocol checker
 sim/      run_sim.sh, filelist.f, build artifacts (obj_dir/)
 reports/  Generated: sim.log, coverage_summary.txt, regression_report.txt
-archive/  Historical phase-0 … phase-5 snapshots
 ```
 
 ## Run simulation
@@ -25,7 +24,7 @@ archive/  Historical phase-0 … phase-5 snapshots
 From MSYS2 MINGW64:
 
 ```bash
-cd /c/Personal/week-5/sim
+cd sim
 ./run_sim.sh
 ```
 
