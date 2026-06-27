@@ -1,0 +1,104 @@
+
+WEEK 5 VERIFICATION SPECIFICATION
+PROJECT: APB3 SLAVE PERIPHERAL
+
+OBJECTIVE
+Verify APB protocol compliance, register correctness, reset behavior, error handling, and robustness.
+
+REPOSITORY LAYOUT
+  docs/   design_spec.txt, verification_spec.txt, register_map.txt
+  rtl/    DUT
+  tb/     testbench and verification env
+  sim/    run_sim.sh, filelist.f
+  reports/  regression_report.txt, coverage_summary.txt, sim.log (generated)
+
+TESTBENCH ARCHITECTURE
+- apb_if.sv           — APB interface
+- apb_driver.sv       — APB master (SETUP / ACCESS / wait pready)
+- apb_monitor.sv      — passive observer → mailbox
+- apb_transaction.sv  — beat record class
+- apb_scoreboard.sv   — reference model + checks
+- apb_coverage.sv     — functional coverage bins
+- apb_protocol_checker.sv — Verilator-friendly protocol checks
+- tb_apb_slave.sv     — tests, clock, DUT, report generation
+
+SIMULATOR
+- Primary: Verilator 5.x (MSYS2 MINGW64), run from sim/run_sim.sh
+- SystemVerilog assertions in tb_apb_slave.sv: enabled on Questa; disabled under VERILATOR
+
+DIRECTED TESTS
+
+TEST 1 RESET
+Verify all registers reset correctly (read all 20 registers = 0).
+
+TEST 2 SINGLE WRITE
+Write one register. Read back and compare.
+
+TEST 3 FULL REGISTER SWEEP
+Write/read every writable register; read STATUS.
+
+TEST 4 BACK-TO-BACK WRITES
+100 consecutive writes.
+
+TEST 5 BACK-TO-BACK READS
+100 consecutive reads.
+
+TEST 6 ILLEGAL ADDRESS ACCESS
+Verify PSLVERR on: outside window (aligned), outside (unaligned), inside unaligned,
+  STATUS write (aligned). Scoreboard checks SLVERR only on error beats.
+
+TEST 7 RANDOM READ/WRITE
+1111 random transactions inside the slave window.
+1111 random transactions in whole 32-bit address space.
+
+TEST 8 WAIT CYCLE SWEEP
+Sweep num_wait_cycles from 0 to 7; write CTRL, read back each setting.
+
+TEST 9 RANDOM WAIT CYCLES
+10 iterations: random num_wait_cycles in 0..7, write/read CTRL.
+
+TEST 10 APB FSM STATUS (when USE_APB_FSM=1 in TB)
+Verify STATUS error bit: clear after reset, set after illegal STATUS write,
+  cleared after successful legal write. (Busy not checked on self-read.)
+
+SCOREBOARD
+Reference model: array-based register model (20 entries).
+Checks: read data, write data, SLVERR vs expected illegal/STATUS-write rules.
+When USE_APB_FSM=1: skip read-data compare on STATUS (dynamic register).
+
+PROTOCOL CHECKER (apb_protocol_checker.sv)
+Replaces SVA for Verilator regression:
+- PENABLE without PSEL → violation
+- PREADY outside ACCESS (psel & penable) → violation
+
+ASSERTIONS (Questa / non-Verilator only, in tb_apb_slave.sv)
+- Wait state: penable held until pready within 16 cycles
+- pready |-> pslverr or !offset_valid
+- pslverr |=> master deasserts
+- pready |=> master deasserts
+Functional equivalents under Verilator: scoreboard (data/SLVERR), protocol checker.
+
+FUNCTIONAL COVERAGE (apb_coverage.sv)
+Bins (24 total):
+- reg[0:19] accessed (legal offset hit)
+- read transaction
+- write transaction
+- error path (slverr beat)
+- reset path (first beat after cov.notify_reset in TEST 1)
+Target: >95 percent (achieved 24/24 = 100% with full regression)
+
+REGRESSION EXIT CRITERIA
+- All directed tests pass (scoreboard err_count delta = 0 per test)
+- No protocol checker violations
+- Functional coverage >= 95%
+- Reports written: reports/regression_report.txt, reports/coverage_summary.txt
+
+DELIVERABLES
+- tb/tb_apb_slave.sv
+- tb/apb_driver.sv
+- tb/apb_monitor.sv
+- tb/apb_scoreboard.sv
+- tb/apb_coverage.sv
+- tb/apb_protocol_checker.sv
+- reports/regression_report.txt (generated)
+- reports/coverage_summary.txt (generated)

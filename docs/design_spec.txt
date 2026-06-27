@@ -1,0 +1,124 @@
+
+WEEK 5 DESIGN SPECIFICATION
+PROJECT: PARAMETERIZED APB3 SLAVE PERIPHERAL
+
+OBJECTIVE
+Design a reusable APB3-compliant slave peripheral with configurable register bank, address decoding, read/write support, reset handling, and error response generation.
+
+PARAMETERS (apb_slave_top)
+- ADDRESS_WIDTH = 32
+- DATA_WIDTH = 32
+- NUM_CTRL_REGS = 4
+- NUM_USER_REGS = 16
+- SLAVE_BASE_ADDR = 32'h4000_0000  (must be 256-byte aligned: BASE[7:0] == 0)
+- MAX_WAIT_CYCLES = 7              (localparam: counter width / legal runtime range 0..7)
+- USE_APB_FSM = 0                  (0 = legacy; 1 = optional IDLE/SETUP/ACCESS FSM)
+(localparam)
+- NUM_REGS = NUM_CTRL_REGS + NUM_USER_REGS
+
+RUNTIME INPUT (not a parameter)
+- num_wait_cycles : number of ACCESS cycles with PREADY low before completion
+  Legal range 0 .. MAX_WAIT_CYCLES. Default TB value = 2.
+
+PORT LIST
+INPUTS
+- clk
+- rst_n
+- psel
+- penable
+- pwrite
+- paddr
+- pwdata
+- num_wait_cycles
+
+OUTPUTS
+- pslverr
+- pready
+- prdata
+
+MEMORY MAP (SoC view)
+  BASE_ADDR    = 32'h4000_0000
+  Valid range  = BASE_ADDR + 0x00 .. BASE_ADDR + (NUM_REGS-1)*4
+  Valid range  = 32'h4000_0000 .. 32'h4000_004C (both inclusive)
+  Compact decode window: only offsets 0x00..0x4C are legal registers.
+  Aligned offsets 0x50..0xFF (within 256 B slot) → PSLVERR (no register).
+  offset >= 0x100 from BASE → outside slave (interconnect / no PSEL).
+
+REGISTER MAP (offsets from BASE_ADDR)
+  0x00  CTRL
+  0x04  STATUS (RO)
+  0x08  CONFIG0
+  0x0C  CONFIG1
+  0x10 - 0x4C  USER[0:15] (16 registers)
+
+ADDRESSING RULES
+  - Driver uses FULL address = BASE_ADDR + offset
+  - Slave offset = paddr[7:0]  (when BASE is 256B-aligned)
+  - Word-aligned: offset[1:0] == 0
+  - reg_exists → normal access
+  - offset in 0x50..0xFF (aligned, no register) → PSLVERR
+  - unaligned offset in window → PSLVERR
+  - STATUS write → PSLVERR
+  - offset >= 0x100 from BASE → outside slave (interconnect / no PSEL)
+  
+REGISTER DEFINITIONS
+
+CTRL (RW)
+Bit0 Enable          — storage only (no internal side-effect in this IP)
+Bit1 Interrupt Enable — storage only
+
+STATUS (RO)
+Bit0 Busy  — live when USE_APB_FSM=1 (FSM not IDLE); reads as 0 when USE_APB_FSM=0
+Bit1 Error — live when USE_APB_FSM=1 (last completed beat SLVERR); reads as 0 when USE_APB_FSM=0
+Note: reading STATUS via APB is itself a transfer; Busy may read 1 during that read.
+
+CONFIG0/CONFIG1 (RW)
+General configuration storage
+
+USER REGISTERS (RW)
+General purpose storage
+
+APB3 TIMING (response_logic)
+- SETUP:  psel=1, penable=0
+- ACCESS: psel=1, penable=1
+- num_wait_cycles = N → N ACCESS cycles with pready=0, then one ACCESS cycle with pready=1
+- Master samples prdata/pslverr on the pready=1 cycle; deasserts next cycle
+
+WRITE TRANSACTION
+1. Detect setup phase
+2. Capture address/data (master holds paddr/pwdata stable)
+3. Update register on completion ACCESS cycle (psel & penable & pready & pwrite)
+4. Assert PREADY on final ACCESS cycle only
+5. Generate PSLVERR for invalid address or STATUS write
+
+READ TRANSACTION
+1. Decode address during ACCESS
+2. Return register contents (or live STATUS when USE_APB_FSM=1)
+3. Assert PREADY on final ACCESS cycle only
+4. Generate PSLVERR for invalid address
+
+INTERNAL BLOCKS
+- apb_slave_top
+- apb_decoder       — address window, alignment, reg_sel
+- register_bank     — storage + combinational read mux
+- apb_response_logic (apb_resp.sv) — wait states, pready, pslverr, optional FSM
+
+RESET BEHAVIOR
+All writable registers reset to zero. STATUS is not stored when USE_APB_FSM=1.
+
+OPTIONAL FSM (parameter USE_APB_FSM on apb_slave_top, decoder, register_bank, apb_resp)
+When USE_APB_FSM=0:
+  - Combinational ACCESS (psel & penable) for decode and register strobes
+  - STATUS reads return stored value (reset = 0)
+When USE_APB_FSM=1:
+  - Registered IDLE / SETUP / ACCESS FSM in apb_response_logic (busy flag)
+  - Decoder and register_bank gate on state_access (= psel & penable)
+  - STATUS[0] Busy = FSM not IDLE; STATUS[1] Error = SLVERR on last completed beat
+
+DELIVERABLES
+- rtl/apb_slave_top.sv
+- rtl/apb_decoder.sv
+- rtl/register_bank.sv
+- rtl/apb_resp.sv
+- docs/register_map.txt
+- docs/apb_block_diagram.pdf

@@ -1,0 +1,21 @@
+MEMORY MAP (SoC view)
+  BASE_ADDR    = 32'h4000_0000     // 256-byte aligned (BASE[7:0] == 0)
+  NUM_REGS     = 20 (4 control + 16 user)
+  Valid range  = BASE_ADDR + 0x00 .. BASE_ADDR + (NUM_REGS-1)*4
+  Valid range  = 32'h4000_0000 .. 32'h4000_004C
+
+REGISTER MAP (offsets from BASE_ADDR)
+  0x00  CTRL       (RW)  bit0 Enable, bit1 Interrupt Enable
+  0x04  STATUS     (RO)  bit0 Busy, bit1 Error  [live when USE_APB_FSM=1]
+  0x08  CONFIG0    (RW)
+  0x0C  CONFIG1    (RW)
+  0x10 - 0x4C  USER[0:15] (RW)
+
+ADDRESSING RULES
+  - Driver uses FULL address = BASE_ADDR + offset
+  - Slave offset = paddr[7:0]  (when BASE is 256-byte aligned)
+  - Word-aligned: offset[1:0] == 0
+  - Legal register hit → normal access
+  - offset 0x50..0xFF aligned (256 B slot hole) → PSLVERR
+  - unaligned offset in 0x00..0xFF → PSLVERR
+  - STATUS write → PSLVERR
