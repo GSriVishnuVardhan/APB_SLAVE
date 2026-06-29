@@ -156,7 +156,7 @@ module tb_apb_slave;
         .DATA_WIDTH(DATA_WIDTH),
         .NUM_CTRL_REGS(NUM_CTRL_REGS),
         .NUM_USER_REGS(NUM_USER_REGS)
-    ) sb(.mon_mbx(mon_mbx)); // Scoreboard to the DUT
+    ) sb(.mon_mbx(mon_mbx));
 
 
     // Clock generator
@@ -221,7 +221,7 @@ module tb_apb_slave;
         end
     endtask
 
-    int err_before;
+    int sb_err_before = 0;
 
     // Test sequence; run the monitor in parallel with the test sequence
     initial begin
@@ -231,27 +231,27 @@ module tb_apb_slave;
             cov.run();
         join_none;
         
-        err_before = sb.get_error_count();
+        sb_err_before = sb.get_error_count();
         // TEST 1 RESET - Verify all registers reset correctly.
-        test_reset(); err_before = sb.get_error_count();
+        test_reset(); sb_err_before = sb.get_error_count();
         // TEST 2 SINGLE WRITE - Write one register. Read back and compare.
-        test_single_write(); err_before = sb.get_error_count();
+        test_single_write(); sb_err_before = sb.get_error_count();
         // TEST 3 FULL REGISTER SWEEP - Write/read every register.
-        test_full_register_sweep(); err_before = sb.get_error_count();
+        test_full_register_sweep(); sb_err_before = sb.get_error_count();
         // TEST 4 BACK-TO-BACK WRITES - 100 consecutive writes.
-        test_back_to_back_writes(); err_before = sb.get_error_count();
+        test_back_to_back_writes(); sb_err_before = sb.get_error_count();
         // TEST 5 BACK-TO-BACK READS - 100 consecutive reads.
-        test_back_to_back_reads(); err_before = sb.get_error_count();
+        test_back_to_back_reads(); sb_err_before = sb.get_error_count();
         // TEST 6 ILLEGAL ADDRESS ACCESS - Verify PSLVERR assertion.
-        test_illegal_address_access(); err_before = sb.get_error_count();
+        test_illegal_address_access(); sb_err_before = sb.get_error_count();
         // TEST 7 RANDOM READ/WRITE - 1000+ random transactions.
-        test_random_read_write(); err_before = sb.get_error_count();
+        test_random_read_write(); sb_err_before = sb.get_error_count();
         // TEST 8 WAIT CYCLE SWEEP - num_wait_cycles 0..7
-        test_wait_cycle_sweep(); err_before = sb.get_error_count();
+        test_wait_cycle_sweep(); sb_err_before = sb.get_error_count();
         // TEST 9 RANDOM WAIT CYCLES - 10 random wait settings
-        test_random_wait_cycles(); err_before = sb.get_error_count();
+        test_random_wait_cycles(); sb_err_before = sb.get_error_count();
         if (USE_APB_FSM)
-            test_apb_fsm_status(); err_before = sb.get_error_count();
+            test_apb_fsm_status(); sb_err_before = sb.get_error_count();
 
         // M3: drain coverage/scoreboard and generate reports
         wait_sb(100);

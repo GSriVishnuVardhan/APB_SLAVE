@@ -14,8 +14,8 @@ module apb_monitor
 )
 (
     apb_if vif,
-    mailbox mon_mbx,
-    mailbox cov_mbx
+    mailbox #(apb_transaction) mon_mbx,
+    mailbox #(apb_transaction) cov_mbx
 );
     bit verbose = 1;
 
