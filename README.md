@@ -3,7 +3,7 @@
 [![CI](https://github.com/GSriVishnuVardhan/APB_SLAVE/actions/workflows/ci.yml/badge.svg)](https://github.com/GSriVishnuVardhan/APB_SLAVE/actions/workflows/ci.yml)
 
 Production-style **AMBA APB3 slave** with parameterized register bank, modular RTL hierarchy, and a complete **UVM-lite** verification environment (driver, monitor, scoreboard, reference model, coverage, assertions).
-Built as a portfolio IP block for freelance RTL/verification work.
+Built as a portfolio-quality RTL block for SoC integration and RTL/verification work.
 
 ---
 
