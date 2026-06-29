@@ -13,11 +13,19 @@ module apb_monitor
     parameter DATA_WIDTH = 32
 )
 (
-    apb_if vif,
-    mailbox #(apb_transaction) mon_mbx,
-    mailbox #(apb_transaction) cov_mbx
+    apb_if vif
 );
+    mailbox #(apb_transaction) mon_mbx;
+    mailbox #(apb_transaction) cov_mbx;
     bit verbose = 1;
+
+    function void set_mailboxes(
+        mailbox #(apb_transaction) mon,
+        mailbox #(apb_transaction) cov
+    );
+        mon_mbx = mon;
+        cov_mbx = cov;
+    endfunction
 
     task automatic monitor_apb();
         apb_transaction trans;

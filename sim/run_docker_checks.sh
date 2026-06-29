@@ -14,7 +14,7 @@ docker run --rm \
         set -euo pipefail
         export DEBIAN_FRONTEND=noninteractive
         apt-get update -qq
-        apt-get install -y -qq verilator yosys gtkwave xvfb > /dev/null
+        apt-get install -y -qq verilator yosys gtkwave xvfb zlib1g-dev > /dev/null
 
         echo "==> Wave capture (Verilator + FST)"
         bash run_wave.sh

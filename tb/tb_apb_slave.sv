@@ -125,7 +125,7 @@ module tb_apb_slave;
     apb_monitor #(
         .ADDRESS_WIDTH(ADDRESS_WIDTH),
         .DATA_WIDTH(DATA_WIDTH)
-    ) mon(.vif(vif), .mon_mbx(mon_mbx), .cov_mbx(cov_mbx));
+    ) mon(.vif(vif));
 
     apb_coverage #(
         .ADDRESS_WIDTH(ADDRESS_WIDTH),
@@ -134,7 +134,7 @@ module tb_apb_slave;
         .NUM_USER_REGS(NUM_USER_REGS),
         .MAX_WAIT_CYCLES(MAX_WAIT_CYCLES),
         .COVERAGE_GOAL(95.0)
-    ) cov(.cov_mbx(cov_mbx));
+    ) cov();
 
     apb_protocol_checker #(
         .ADDRESS_WIDTH(ADDRESS_WIDTH)
@@ -156,7 +156,7 @@ module tb_apb_slave;
         .DATA_WIDTH(DATA_WIDTH),
         .NUM_CTRL_REGS(NUM_CTRL_REGS),
         .NUM_USER_REGS(NUM_USER_REGS)
-    ) sb(.mon_mbx(mon_mbx));
+    ) sb();
 
 
     // Clock generator
@@ -225,6 +225,10 @@ module tb_apb_slave;
 
     // Test sequence; run the monitor in parallel with the test sequence
     initial begin
+        mon.set_mailboxes(mon_mbx, cov_mbx);
+        sb.set_mailbox(mon_mbx);
+        cov.set_mailbox(cov_mbx);
+
         fork
             mon.monitor_apb();
             sb.run();

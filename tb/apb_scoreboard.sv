@@ -13,9 +13,8 @@ module apb_scoreboard #(
     parameter NUM_CTRL_REGS = 4,
     parameter NUM_USER_REGS = 16,
     localparam NUM_REGS = NUM_CTRL_REGS + NUM_USER_REGS
-)(
-    mailbox #(apb_transaction) mon_mbx
-);
+)();
+    mailbox #(apb_transaction) mon_mbx;
     bit verbose = 1;
     int err_count = 0;
 
@@ -27,6 +26,10 @@ module apb_scoreboard #(
 
     function int get_error_count();
         return err_count;
+    endfunction
+
+    function void set_mailbox(mailbox #(apb_transaction) mb);
+        mon_mbx = mb;
     endfunction
 
     task reset_model();

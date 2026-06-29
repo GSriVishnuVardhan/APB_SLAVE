@@ -1,0 +1,2 @@
+# Shell scripts must use LF so bash/WSL/GitHub Actions work (avoid "pipefail\r" errors)
+*.sh text eol=lf

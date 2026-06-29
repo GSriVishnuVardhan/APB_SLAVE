@@ -24,14 +24,15 @@ TB  := $(ROOT)/tb/apb_if.sv \
 
 VERILATOR := verilator --timing --binary -Wall -Wno-fatal --sv
 
-.PHONY: all sim lint clean wave help
+.PHONY: all sim lint clean wave help ci-local
 
 all: sim
 
 help:
 	@echo "Targets:"
-	@echo "  make sim   — compile + run regression (Verilator)"
-	@echo "  make lint  — RTL lint-only (Verilator)"
+	@echo "  make sim        — compile + run regression (Verilator)"
+	@echo "  make lint       — RTL lint-only (Verilator)"
+	@echo "  make ci-local   — mirror GitHub CI (lint + sim + wave + synth)"
 	@echo "  make wave-view — open FST in GTKWave"
 	@echo "  make synth  — Yosys open-source synthesis"
 	@echo "  make clean  — remove obj_dir"
@@ -41,6 +42,9 @@ sim:
 
 lint:
 	@bash lint.sh
+
+ci-local:
+	@bash run_ci_local.sh
 
 wave:
 	@bash run_wave.sh

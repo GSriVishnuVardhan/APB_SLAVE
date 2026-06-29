@@ -6,17 +6,17 @@ Tool:       Yosys (generic techmap)
 Per-module cell counts (inside each block, not additive):
   read_mux                1300 cells
   register_bank            633 cells
-  apb_decoder              215 cells
+  apb_decoder              165 cells
   apb_response_logic        39 cells
   apb_slave_top              4 cells
 
 Design total (all blocks combined):
-  Total cells:  2187
-  $_AND_                        764
+  Total cells:  2137
+  $_AND_                        740
   $_DFFE_PN0P_                  611
   $_MUX_                        108
-  $_NOT_                         47
-  $_OR_                         652
+  $_NOT_                         48
+  $_OR_                         625
   $_XOR_                          5
 
 Check:        PASS (0 problems)

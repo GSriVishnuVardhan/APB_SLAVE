@@ -12,10 +12,8 @@ module apb_coverage
     parameter real COVERAGE_GOAL = 95.0,
     localparam NUM_REGS = NUM_CTRL_REGS + NUM_USER_REGS,
     localparam int NUM_BINS = NUM_REGS + 4 // reg[0:19] + read + write + error + reset
-)
-(
-    mailbox #(apb_transaction) cov_mbx
-);
+)();
+    mailbox #(apb_transaction) cov_mbx;
     bit reg_hit [0:NUM_REGS-1];
     bit read_hit;
     bit write_hit;
@@ -73,6 +71,10 @@ module apb_coverage
 
     function automatic bit coverage_goal_met();
         return get_coverage_pct() >= COVERAGE_GOAL;
+    endfunction
+
+    function void set_mailbox(mailbox #(apb_transaction) mb);
+        cov_mbx = mb;
     endfunction
 
     task run();

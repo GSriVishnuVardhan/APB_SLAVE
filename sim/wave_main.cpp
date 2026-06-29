@@ -32,6 +32,5 @@ int main(int argc, char** argv, char**) {
 
     topp->final();
     tfp.close();
-    contextp->statsPrintSummary();
     return 0;
 }

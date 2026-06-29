@@ -374,25 +374,25 @@ Test passed: TEST 7: RANDOM READ/WRITE: Scoreboard passed
   wait_cycles=7 OK
 Test passed: TEST 8: WAIT CYCLE SWEEP: Scoreboard passed
 ==================Test 9: RANDOM WAIT CYCLES==============
-  iter=0 wait_cycles=1 OK
-  iter=1 wait_cycles=6 OK
-  iter=2 wait_cycles=3 OK
-  iter=3 wait_cycles=3 OK
-  iter=4 wait_cycles=6 OK
-  iter=5 wait_cycles=7 OK
-  iter=6 wait_cycles=0 OK
-  iter=7 wait_cycles=7 OK
-  iter=8 wait_cycles=6 OK
-  iter=9 wait_cycles=4 OK
+  iter=0 wait_cycles=0 OK
+  iter=1 wait_cycles=4 OK
+  iter=2 wait_cycles=7 OK
+  iter=3 wait_cycles=5 OK
+  iter=4 wait_cycles=4 OK
+  iter=5 wait_cycles=1 OK
+  iter=6 wait_cycles=7 OK
+  iter=7 wait_cycles=3 OK
+  iter=8 wait_cycles=2 OK
+  iter=9 wait_cycles=0 OK
 Test passed: TEST 9: RANDOM WAIT CYCLES: Scoreboard passed
 ==================Test 10: APB FSM STATUS==============
 Reset asserted for 3 cycles
 Reset deasserted
 Reading from register 40000004
-Monitor: Transaction: Address: 40000004, Write data: 07ba9dae, Read data: 00000001, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
+Monitor: Transaction: Address: 40000004, Write data: 9c4e9f52, Read data: 00000001, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000004 is 00000001 and pslverr is 0
 Scoreboard: STATUS read (live): 00000001
-Monitor: Transaction: Address: 40000004, Write data: 07ba9dae, Read data: 00000001, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
+Monitor: Transaction: Address: 40000004, Write data: 9c4e9f52, Read data: 00000001, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Writing to register 40000004
 Scoreboard: STATUS read (live): 00000001
 Write failed: pslverr asserted: 1
@@ -448,7 +448,4 @@ Test passed: TEST 10: APB FSM STATUS: Scoreboard passed
 ================================================
 ==================All tests passed==============
 ================================================
-- C:/Personal/APB_SLAVE/tb\tb_apb_slave.sv:275: Verilog $finish
-- S i m u l a t i o n   R e p o r t: Verilator 5.046 2026-02-28
-- Verilator: $finish at 166us; walltime 0.024 s; speed 10.597 ms/s
-- Verilator: cpu 0.016 s on 1 threads; allocated 5 MB
+- /mnt/c/Personal/APB_SLAVE/tb/tb_apb_slave.sv:279: Verilog $finish

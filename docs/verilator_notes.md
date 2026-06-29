@@ -20,21 +20,27 @@ Keep modports in `apb_if.sv` for Questa later; they are not used on Verilator su
 
 ## Mailboxes
 
-Use a **typed** mailbox in module port lists:
+Verilator **5.020** rejects parameterized mailboxes in **module port lists** (`UNSUPPORTED: Ranges ignored in port-lists`). Verilator **5.046** rejects **untyped** `mailbox` ports (`Class parameter type 'T' without default`).
+
+Use **internal** typed mailboxes plus a **setter** from the testbench (before `fork`):
 
 ```systemverilog
-mailbox #(apb_transaction) mon_mbx   // OK
-```
+// Inside monitor / scoreboard / coverage (not in port list)
+mailbox #(apb_transaction) mon_mbx;
 
-Do **not** use an untyped mailbox — Verilator reports `Class parameter type without default value: 'T'`:
+function void set_mailbox(mailbox #(apb_transaction) mb);
+    mon_mbx = mb;
+endfunction
+```
 
 ```systemverilog
-mailbox mon_mbx   // ERROR on 5.046+
+// tb_apb_slave initial block
+mon.set_mailboxes(mon_mbx, cov_mbx);
+sb.set_mailbox(mon_mbx);
+cov.set_mailbox(cov_mbx);
 ```
 
-Do **not** replace mailboxes with `input logic` / `input apb_transaction` handshakes; coverage and scoreboard need blocking `get()`.
-
-Pattern: module + `task run()` + typed mailbox port (monitor, scoreboard, coverage).
+Do **not** use untyped `mailbox` or `input apb_transaction` signal handshakes.
 
 ## Other
 
