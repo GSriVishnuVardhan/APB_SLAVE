@@ -14,7 +14,8 @@ module apb_coverage
     localparam int NUM_BINS = NUM_REGS + 4 // reg[0:19] + read + write + error + reset
 )
 (
-    mailbox #(apb_transaction) cov_mbx
+    input logic cov_mbx_put,
+    input apb_transaction cov_mbx_data
 );
     bit reg_hit [0:NUM_REGS-1];
     bit read_hit;
@@ -78,7 +79,8 @@ module apb_coverage
     task run();
         apb_transaction trans;
         forever begin
-            cov_mbx.get(trans);
+            wait(cov_mbx_put);
+            trans = cov_mbx_data;
             sample_transaction(trans);
         end
     endtask
