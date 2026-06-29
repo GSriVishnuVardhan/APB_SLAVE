@@ -14,7 +14,7 @@ module apb_scoreboard #(
     parameter NUM_USER_REGS = 16,
     localparam NUM_REGS = NUM_CTRL_REGS + NUM_USER_REGS
 )(
-    mailbox #(apb_transaction) mon_mbx
+    mailbox mon_mbx
 );
     bit verbose = 1;
     int err_count = 0;

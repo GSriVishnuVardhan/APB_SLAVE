@@ -21,7 +21,7 @@ module apb_driver
     parameter DATA_WIDTH = 32
 )
 (
-    apb_if #(ADDRESS_WIDTH, DATA_WIDTH) vif
+    apb_if vif
 );
     bit verbose = 1;
     bit quiet_errors = 0;

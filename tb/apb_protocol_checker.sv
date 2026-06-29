@@ -6,7 +6,7 @@
 module apb_protocol_checker #(
     parameter ADDRESS_WIDTH = 32
 )(
-    apb_if #(ADDRESS_WIDTH, 32) vif
+    apb_if vif
 );
     int violation_count;
 
