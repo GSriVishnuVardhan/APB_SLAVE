@@ -13,9 +13,9 @@ module apb_monitor
     parameter DATA_WIDTH = 32
 )
 (
-    apb_if #(ADDRESS_WIDTH, DATA_WIDTH) vif,
-    mailbox #(apb_transaction) mon_mbx,
-    mailbox #(apb_transaction) cov_mbx
+    apb_if vif,
+    mailbox mon_mbx,
+    mailbox cov_mbx
 );
     bit verbose = 1;
 
