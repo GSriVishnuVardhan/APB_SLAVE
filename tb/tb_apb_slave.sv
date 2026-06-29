@@ -156,7 +156,7 @@ module tb_apb_slave;
         .DATA_WIDTH(DATA_WIDTH),
         .NUM_CTRL_REGS(NUM_CTRL_REGS),
         .NUM_USER_REGS(NUM_USER_REGS)
-    ) sb(.mon_mbx(mon_mbx)); // Scoreboard to the DUT
+    ) sb(); // Scoreboard to the DUT (mailbox set at runtime)
 
 
     // Clock generator
@@ -225,6 +225,9 @@ module tb_apb_slave;
 
     // Test sequence; run the monitor in parallel with the test sequence
     initial begin
+        // give the scoreboard the mailbox handle before it starts
+        sb.set_mailbox(mon_mbx);
+
         fork
             mon.monitor_apb();
             sb.run();
