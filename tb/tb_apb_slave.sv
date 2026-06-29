@@ -139,6 +139,15 @@ module tb_apb_slave;
     apb_protocol_checker #(
         .ADDRESS_WIDTH(ADDRESS_WIDTH)
     ) proto_chk(.vif(vif));
+
+    `ifndef VERILATOR
+    apb_assertions #(
+        .ADDRESS_WIDTH(ADDRESS_WIDTH)
+    ) assert_inst (
+        .vif(vif),
+        .offset_valid(dut.apb_decoder_inst.offset_valid)
+    );
+    `endif
     
     // Instantiate the apb_scoreboard module
     apb_scoreboard #(
@@ -182,6 +191,11 @@ module tb_apb_slave;
         $fdisplay(fd, "Tests: %s", regression_pass ? "ALL PASSED" : "FAILED");
         $fdisplay(fd, "Scoreboard errors: %0d", sb.err_count);
         $fdisplay(fd, "Protocol violations: %0d", proto_chk.get_violation_count());
+        `ifdef VERILATOR
+        $fdisplay(fd, "SVA assertions: N/A (Verilator — use apb_protocol_checker)");
+        `else
+        $fdisplay(fd, "SVA assertion failures: %0d", assert_inst.get_failure_count());
+        `endif
         $fdisplay(fd, "Functional coverage: %.1f%% (goal >= 95%%)", cov.get_coverage_pct());
         $fdisplay(fd, "Coverage goal: %s", cov.coverage_goal_met() ? "PASS" : "FAIL");
         $fdisplay(fd, "");
@@ -243,6 +257,10 @@ module tb_apb_slave;
         wait_sb(100);
         if (proto_chk.get_violation_count() > 0)
             regression_pass = 0;
+        `ifndef VERILATOR
+        if (assert_inst.get_failure_count() > 0)
+            regression_pass = 0;
+        `endif
         if (!cov.coverage_goal_met())
             regression_pass = 0;
 
@@ -490,32 +508,8 @@ module tb_apb_slave;
         $finish(1); // Timeout, finish simulation
     end
 
-    // Assertions
+    // Assertions: apb_protocol_checker (Verilator) + apb_assertions.sv (Questa/Xcelium)
     `ifdef VERILATOR
-    // If VERILATOR is defined, then assertions are disabled
-    initial begin : verilator_assertions
-        $display("Assertions are disabled");
-    end
-    `endif
-    `ifndef VERILATOR
-    initial begin : assertions
-        // If VERILATOR is not defined, then assertions are enabled
-        $display("Assertions are enabled");
-        // 1. PSEL and PENABLE are asserted and PREADY is not asserted, then PSEL and PENABLE are asserted for at least 16 cycles
-        assert property (@(posedge vif.pclk) disable iff (!vif.rst_n)
-            (vif.psel && vif.penable && !vif.pready) |=> (vif.psel && vif.penable) throughout ##[0:16] dut.response_logic_inst.pready);
-
-        // 2. PREADY is asserted, then PSLVERR is asserted or ADDR_VALID is not asserted
-        assert property (@(posedge vif.pclk) disable iff (!vif.rst_n)
-            vif.pready |-> (vif.pslverr || !dut.apb_decoder_inst.offset_valid);
-
-        // 3. PSLVERR is asserted, then PSEL and PENABLE are deasserted
-        assert property (@(posedge vif.pclk) disable iff (!vif.rst_n)
-            vif.pslverr |=> (!vif.psel && !vif.penable) throughout ##[0:16] vif.pslverr);
-
-        // 4. PREADY is asserted, then PSEL and PENABLE are deasserted
-        assert property (@(posedge vif.pclk) disable iff (!vif.rst_n)
-            vif.pready |=> (!vif.psel && !vif.penable) throughout ##[0:16] vif.pready);
-    end
+    initial $display("SVA module disabled — using apb_protocol_checker for Verilator");
     `endif
 endmodule

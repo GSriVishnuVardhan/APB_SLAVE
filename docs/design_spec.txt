@@ -101,12 +101,13 @@ INTERNAL BLOCKS
 - apb_slave_top
 - apb_decoder       — address window, alignment, reg_sel
 - register_bank     — storage + combinational read mux
-- apb_response_logic (apb_resp.sv) — wait states, pready, pslverr, optional FSM
+- apb_response_logic (apb_response_logic.sv) — wait states, pready, pslverr, optional FSM
+- read_mux (read_mux.sv) — read data multiplexing
 
 RESET BEHAVIOR
 All writable registers reset to zero. STATUS is not stored when USE_APB_FSM=1.
 
-OPTIONAL FSM (parameter USE_APB_FSM on apb_slave_top, decoder, register_bank, apb_resp)
+OPTIONAL FSM (parameter USE_APB_FSM on apb_slave_top, decoder, register_bank, apb_response_logic)
 When USE_APB_FSM=0:
   - Combinational ACCESS (psel & penable) for decode and register strobes
   - STATUS reads return stored value (reset = 0)
@@ -119,6 +120,7 @@ DELIVERABLES
 - rtl/apb_slave_top.sv
 - rtl/apb_decoder.sv
 - rtl/register_bank.sv
-- rtl/apb_resp.sv
+- rtl/read_mux.sv
+- rtl/apb_response_logic.sv
 - docs/register_map.txt
-- docs/apb_block_diagram.pdf
+- docs/images/apb_block_diagram.svg (PNG export via generate_assets.py)

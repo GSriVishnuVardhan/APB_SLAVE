@@ -1,5 +1,6 @@
 # Verilator / simulator build artifacts
 sim/obj_dir/
+sim/obj_wave/
 **/obj_dir/
 
 # Editor / OS

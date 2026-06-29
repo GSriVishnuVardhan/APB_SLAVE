@@ -1,0 +1,25 @@
+# Yosys open-source synthesis flow for apb_slave_top
+# Generic techmap only — no read_liberty / FPGA / foundry PDK (see docs/SYNTHESIS_RESULTS.md)
+# Default parameters: USE_APB_FSM=0 (synthesis-friendly)
+read_verilog -sv \
+    ../rtl/read_mux.sv \
+    ../rtl/apb_decoder.sv \
+    ../rtl/register_bank.sv \
+    ../rtl/apb_response_logic.sv \
+    ../rtl/apb_slave_top.sv
+
+hierarchy -check -top apb_slave_top
+
+proc; opt; fsm; opt; memory; opt
+techmap; opt
+
+log "=== stat apb_slave_top (per-module + design total) ==="
+stat -top apb_slave_top -width
+
+log "=== check ==="
+check -noinit
+
+write_verilog -noattr ../reports/synth/apb_slave_top_syn.v
+write_json ../reports/synth/apb_slave_top.json
+
+log "=== SYNTH PASS ==="

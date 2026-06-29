@@ -1,0 +1,1184 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.56 (git sha1 9c447ad9d4b1ea589369364eea38b4d70da2c599, x86_64-w64-mingw32-g++ 15.2.0 -march=nocona -msahf -mtune=generic -O2 -fstack-protector-strong -O3)
+
+-- Executing script file `synth.ys' --
+
+1. Executing Verilog-2005 frontend: ../rtl/read_mux.sv
+Parsing SystemVerilog input from `../rtl/read_mux.sv' to AST representation.
+Generating RTLIL representation for module `\read_mux'.
+Warning: Replacing memory \masked with list of registers. See ../rtl/read_mux.sv:37
+Warning: Replacing memory \reg_data with list of registers. See ../rtl/read_mux.sv:29
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: ../rtl/apb_decoder.sv
+Parsing SystemVerilog input from `../rtl/apb_decoder.sv' to AST representation.
+Generating RTLIL representation for module `\apb_decoder'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: ../rtl/register_bank.sv
+Parsing SystemVerilog input from `../rtl/register_bank.sv' to AST representation.
+Generating RTLIL representation for module `\register_bank'.
+Warning: Replacing memory \user_register_bank with list of registers. See ../rtl/register_bank.sv:55
+Warning: Replacing memory \ctrl_register_bank with list of registers. See ../rtl/register_bank.sv:53
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: ../rtl/apb_response_logic.sv
+Parsing SystemVerilog input from `../rtl/apb_response_logic.sv' to AST representation.
+Generating RTLIL representation for module `\apb_response_logic'.
+Successfully finished Verilog frontend.
+
+5. Executing Verilog-2005 frontend: ../rtl/apb_slave_top.sv
+Parsing SystemVerilog input from `../rtl/apb_slave_top.sv' to AST representation.
+Generating RTLIL representation for module `\apb_slave_top'.
+Successfully finished Verilog frontend.
+
+6. Executing HIERARCHY pass (managing design hierarchy).
+
+6.1. Analyzing design hierarchy..
+Top module:  \apb_slave_top
+Used module:     \register_bank
+Used module:         \read_mux
+Used module:     \apb_decoder
+Used module:     \apb_response_logic
+Parameter \USE_APB_FSM = 0
+Parameter \DATA_WIDTH = 32
+Parameter \NUM_CTRL_REGS = 4
+Parameter \NUM_USER_REGS = 16
+
+6.2. Executing AST frontend in derive mode using pre-parsed AST for module `\read_mux'.
+Parameter \USE_APB_FSM = 0
+Parameter \DATA_WIDTH = 32
+Parameter \NUM_CTRL_REGS = 4
+Parameter \NUM_USER_REGS = 16
+Generating RTLIL representation for module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux'.
+Warning: Replacing memory \masked with list of registers. See ../rtl/read_mux.sv:37
+Warning: Replacing memory \reg_data with list of registers. See ../rtl/read_mux.sv:29
+Parameter \USE_APB_FSM = 0
+Parameter \DATA_WIDTH = 32
+Parameter \NUM_CTRL_REGS = 4
+Parameter \NUM_USER_REGS = 16
+
+6.3. Executing AST frontend in derive mode using pre-parsed AST for module `\register_bank'.
+Parameter \USE_APB_FSM = 0
+Parameter \DATA_WIDTH = 32
+Parameter \NUM_CTRL_REGS = 4
+Parameter \NUM_USER_REGS = 16
+Generating RTLIL representation for module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank'.
+Warning: Replacing memory \user_register_bank with list of registers. See ../rtl/register_bank.sv:55
+Warning: Replacing memory \ctrl_register_bank with list of registers. See ../rtl/register_bank.sv:53
+Parameter \USE_APB_FSM = 0
+Parameter \ADDRESS_WIDTH = 32
+Parameter \SLAVE_BASE_ADDR = 1073741824
+Parameter \NUM_CTRL_REGS = 4
+Parameter \NUM_USER_REGS = 16
+
+6.4. Executing AST frontend in derive mode using pre-parsed AST for module `\apb_decoder'.
+Parameter \USE_APB_FSM = 0
+Parameter \ADDRESS_WIDTH = 32
+Parameter \SLAVE_BASE_ADDR = 1073741824
+Parameter \NUM_CTRL_REGS = 4
+Parameter \NUM_USER_REGS = 16
+Generating RTLIL representation for module `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder'.
+Parameter \USE_APB_FSM = 0
+Parameter \MAX_WAIT_CYCLES = 7
+
+6.5. Executing AST frontend in derive mode using pre-parsed AST for module `\apb_response_logic'.
+Parameter \USE_APB_FSM = 0
+Parameter \MAX_WAIT_CYCLES = 7
+Generating RTLIL representation for module `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic'.
+
+6.6. Analyzing design hierarchy..
+Top module:  \apb_slave_top
+Used module:     $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank
+Used module:         \read_mux
+Used module:     $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder
+Used module:     $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic
+Parameter \USE_APB_FSM = 0
+Parameter \DATA_WIDTH = 32
+Parameter \NUM_CTRL_REGS = 4
+Parameter \NUM_USER_REGS = 16
+Found cached RTLIL representation for module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux'.
+
+6.7. Analyzing design hierarchy..
+Top module:  \apb_slave_top
+Used module:     $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank
+Used module:         $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux
+Used module:     $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder
+Used module:     $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic
+
+6.8. Analyzing design hierarchy..
+Top module:  \apb_slave_top
+Used module:     $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank
+Used module:         $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux
+Used module:     $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder
+Used module:     $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic
+Removing unused module `\apb_response_logic'.
+Removing unused module `\register_bank'.
+Removing unused module `\apb_decoder'.
+Removing unused module `\read_mux'.
+Removed 4 unused modules.
+
+7. Executing PROC pass (convert processes to netlists).
+
+7.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:106$226'.
+Found and cleaned up 1 empty switch in `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:65$208'.
+Cleaned up 2 empty switches.
+
+7.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$../rtl/apb_response_logic.sv:106$226 in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Marked 1 switch rules as full_case in process $proc$../rtl/apb_response_logic.sv:0$222 in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Marked 2 switch rules as full_case in process $proc$../rtl/apb_response_logic.sv:90$215 in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Marked 1 switch rules as full_case in process $proc$../rtl/apb_response_logic.sv:0$210 in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Marked 7 switch rules as full_case in process $proc$../rtl/apb_response_logic.sv:0$201 in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Marked 2 switch rules as full_case in process $proc$../rtl/register_bank.sv:50$184 in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Removed a total of 0 dead cases.
+
+7.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 48 assignments to connections.
+
+7.4. Executing PROC_INIT pass (extract init attributes).
+
+7.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_n in `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:106$226'.
+Found async reset \rst_n in `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:90$215'.
+Found async reset \rst_n in `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:65$208'.
+Found async reset \rst_n in `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+
+7.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~32 debug messages>
+
+7.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:106$226'.
+     1/1: $0\error_sticky[0:0]
+Creating decoders for process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:0$222'.
+     1/1: $1\wait_done[0:0]
+Creating decoders for process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:90$215'.
+     1/1: $0\wait_count[2:0]
+Creating decoders for process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:0$210'.
+     1/2: $1\pready_comb[0:0]
+     2/2: $1\pslverr_comb[0:0]
+Creating decoders for process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:65$208'.
+     1/1: $0\state[1:0]
+Creating decoders for process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:0$201'.
+     1/7: $7\next_state[1:0]
+     2/7: $6\next_state[1:0]
+     3/7: $5\next_state[1:0]
+     4/7: $4\next_state[1:0]
+     5/7: $3\next_state[1:0]
+     6/7: $2\next_state[1:0]
+     7/7: $1\next_state[1:0]
+Creating decoders for process `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.$proc$../rtl/apb_decoder.sv:0$190'.
+Creating decoders for process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+     1/22: $2\i[31:0]
+     2/22: $1\i[31:0]
+     3/22: $0\user_register_bank[15][31:0]
+     4/22: $0\user_register_bank[14][31:0]
+     5/22: $0\user_register_bank[13][31:0]
+     6/22: $0\user_register_bank[12][31:0]
+     7/22: $0\user_register_bank[11][31:0]
+     8/22: $0\user_register_bank[10][31:0]
+     9/22: $0\user_register_bank[9][31:0]
+    10/22: $0\user_register_bank[8][31:0]
+    11/22: $0\user_register_bank[7][31:0]
+    12/22: $0\user_register_bank[6][31:0]
+    13/22: $0\user_register_bank[5][31:0]
+    14/22: $0\user_register_bank[4][31:0]
+    15/22: $0\user_register_bank[3][31:0]
+    16/22: $0\user_register_bank[2][31:0]
+    17/22: $0\user_register_bank[1][31:0]
+    18/22: $0\user_register_bank[0][31:0]
+    19/22: $0\ctrl_register_bank[3][31:0]
+    20/22: $0\ctrl_register_bank[2][31:0]
+    21/22: $0\ctrl_register_bank[1][31:0]
+    22/22: $0\ctrl_register_bank[0][31:0]
+Creating decoders for process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+
+7.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.\wait_done' from process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:0$222'.
+No latch inferred for signal `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.\pready_comb' from process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:0$210'.
+No latch inferred for signal `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.\pslverr_comb' from process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:0$210'.
+No latch inferred for signal `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.\next_state' from process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:0$201'.
+No latch inferred for signal `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.\offset_valid' from process `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.$proc$../rtl/apb_decoder.sv:0$190'.
+No latch inferred for signal `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.\offset_aligned' from process `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.$proc$../rtl/apb_decoder.sv:0$190'.
+No latch inferred for signal `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.\in_window' from process `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.$proc$../rtl/apb_decoder.sv:0$190'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[0]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[1]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[2]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[3]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[4]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[5]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[6]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[7]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[8]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[9]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[10]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[11]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[12]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[13]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[14]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[15]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[16]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[17]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[18]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\reg_data[19]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[0]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[1]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[2]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[3]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[4]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[5]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[6]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[7]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[8]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[9]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[10]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[11]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[12]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[13]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[14]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[15]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[16]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[17]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[18]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+No latch inferred for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.\masked[19]' from process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+
+7.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.\error_sticky' using process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:106$226'.
+  created $adff cell `$procdff$405' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.\wait_count' using process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:90$215'.
+  created $adff cell `$procdff$410' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.\state' using process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:65$208'.
+  created $adff cell `$procdff$415' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\i' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$420' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\ctrl_register_bank[0]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$425' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\ctrl_register_bank[1]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$430' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\ctrl_register_bank[2]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$435' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\ctrl_register_bank[3]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$440' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\user_register_bank[0]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$445' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\user_register_bank[1]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$450' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\user_register_bank[2]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$455' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\user_register_bank[3]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$460' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\user_register_bank[4]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$465' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\user_register_bank[5]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$470' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\user_register_bank[6]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$475' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\user_register_bank[7]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$480' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\user_register_bank[8]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$485' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\user_register_bank[9]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$490' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\user_register_bank[10]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$495' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\user_register_bank[11]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$500' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\user_register_bank[12]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$505' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\user_register_bank[13]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$510' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\user_register_bank[14]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$515' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.\user_register_bank[15]' using process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+  created $adff cell `$procdff$520' with positive edge clock and positive level reset.
+
+7.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+7.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:106$226'.
+Found and cleaned up 1 empty switch in `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:0$222'.
+Removing empty process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:0$222'.
+Found and cleaned up 2 empty switches in `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:90$215'.
+Removing empty process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:90$215'.
+Found and cleaned up 1 empty switch in `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:0$210'.
+Removing empty process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:0$210'.
+Removing empty process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:65$208'.
+Found and cleaned up 7 empty switches in `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:0$201'.
+Removing empty process `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.$proc$../rtl/apb_response_logic.sv:0$201'.
+Removing empty process `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.$proc$../rtl/apb_decoder.sv:0$190'.
+Found and cleaned up 21 empty switches in `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+Removing empty process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.$proc$../rtl/register_bank.sv:50$184'.
+Removing empty process `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.$proc$../rtl/read_mux.sv:0$137'.
+Cleaned up 32 empty switches.
+
+7.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module apb_slave_top.
+Optimizing module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+<suppressed ~16 debug messages>
+Optimizing module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+<suppressed ~1 debug messages>
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+<suppressed ~48 debug messages>
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+
+8. Executing OPT pass (performing simple optimizations).
+
+8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module apb_slave_top.
+Optimizing module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Optimizing module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+
+8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\apb_slave_top'.
+Finding identical cells in module `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic'.
+<suppressed ~36 debug messages>
+Finding identical cells in module `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder'.
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank'.
+<suppressed ~63 debug messages>
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux'.
+Removed a total of 33 cells.
+
+8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \apb_slave_top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$289.
+    dead port 2/2 on $mux $procmux$289.
+    dead port 1/2 on $mux $procmux$283.
+    dead port 2/2 on $mux $procmux$283.
+    dead port 1/2 on $mux $procmux$281.
+    dead port 2/2 on $mux $procmux$281.
+    dead port 1/2 on $mux $procmux$278.
+    dead port 2/2 on $mux $procmux$278.
+    dead port 1/2 on $mux $procmux$272.
+    dead port 2/2 on $mux $procmux$272.
+    dead port 1/2 on $mux $procmux$270.
+    dead port 2/2 on $mux $procmux$270.
+    dead port 1/2 on $mux $procmux$265.
+    dead port 2/2 on $mux $procmux$265.
+    dead port 1/2 on $mux $procmux$263.
+    dead port 2/2 on $mux $procmux$263.
+    dead port 1/2 on $mux $procmux$260.
+    dead port 2/2 on $mux $procmux$260.
+    dead port 1/2 on $mux $procmux$255.
+    dead port 2/2 on $mux $procmux$255.
+    dead port 1/2 on $mux $procmux$253.
+    dead port 2/2 on $mux $procmux$253.
+    dead port 1/2 on $mux $procmux$249.
+    dead port 2/2 on $mux $procmux$249.
+    dead port 1/2 on $mux $procmux$247.
+    dead port 2/2 on $mux $procmux$247.
+    dead port 1/2 on $mux $procmux$244.
+    dead port 2/2 on $mux $procmux$244.
+    dead port 1/4 on $pmux $procmux$294.
+    dead port 2/4 on $pmux $procmux$294.
+    dead port 3/4 on $pmux $procmux$294.
+    dead port 4/4 on $pmux $procmux$294.
+    dead port 1/2 on $mux $procmux$291.
+    dead port 2/2 on $mux $procmux$291.
+Running muxtree optimizer on module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 34 multiplexer ports.
+<suppressed ~26 debug messages>
+
+8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \apb_slave_top.
+  Optimizing cells in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+  Optimizing cells in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+  Optimizing cells in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+  Optimizing cells in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+Performed a total of 0 changes.
+
+8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\apb_slave_top'.
+Finding identical cells in module `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic'.
+Finding identical cells in module `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder'.
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank'.
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux'.
+Removed a total of 0 cells.
+
+8.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$410 ($adff) from module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic (D = $procmux$234_Y, Q = \wait_count).
+Handling D = Q on $procdff$415 ($adff) from module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic (removing D path).
+Setting constant 0-bit at position 0 on $procdff$415 ($dlatch) from module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Setting constant 0-bit at position 1 on $procdff$415 ($dlatch) from module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Setting constant 0-bit at position 0 on $procdff$405 ($adff) from module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Adding EN signal on $procdff$460 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \user_register_bank[3]).
+Adding EN signal on $procdff$475 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \user_register_bank[6]).
+Adding EN signal on $procdff$520 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \user_register_bank[15]).
+Adding EN signal on $procdff$445 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \user_register_bank[0]).
+Adding EN signal on $procdff$490 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \user_register_bank[9]).
+Adding EN signal on $procdff$495 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \user_register_bank[10]).
+Adding EN signal on $procdff$510 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \user_register_bank[13]).
+Adding EN signal on $procdff$500 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \user_register_bank[11]).
+Adding EN signal on $procdff$515 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \user_register_bank[14]).
+Adding EN signal on $procdff$420 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = 20, Q = \i).
+Adding EN signal on $procdff$450 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \user_register_bank[1]).
+Adding EN signal on $procdff$480 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \user_register_bank[7]).
+Adding EN signal on $procdff$425 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \ctrl_register_bank[0]).
+Adding EN signal on $procdff$465 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \user_register_bank[4]).
+Adding EN signal on $procdff$455 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \user_register_bank[2]).
+Adding EN signal on $procdff$505 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \user_register_bank[12]).
+Adding EN signal on $procdff$435 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \ctrl_register_bank[2]).
+Adding EN signal on $procdff$485 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \user_register_bank[8]).
+Adding EN signal on $procdff$470 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \user_register_bank[5]).
+Adding EN signal on $procdff$440 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (D = \wdata, Q = \ctrl_register_bank[3]).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 1 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 3 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 1-bit at position 4 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 5 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 6 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 7 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 8 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 9 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 10 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 11 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 12 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 13 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 14 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 15 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 16 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 17 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 18 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 19 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 20 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 21 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 22 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 23 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 24 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 25 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 26 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 27 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 28 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 29 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 30 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 31 on $auto$ff.cc:266:slice$551 ($adffe) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+
+8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \apb_slave_top..
+Finding unused cells or wires in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+Finding unused cells or wires in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+Removed 52 unused cells and 302 unused wires.
+<suppressed ~58 debug messages>
+
+8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Optimizing module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+Optimizing module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Optimizing module apb_slave_top.
+
+8.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+8.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \apb_slave_top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+<suppressed ~6 debug messages>
+
+8.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+  Optimizing cells in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+  Optimizing cells in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+  Optimizing cells in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+  Optimizing cells in module \apb_slave_top.
+Performed a total of 0 changes.
+
+8.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux'.
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank'.
+Finding identical cells in module `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder'.
+Finding identical cells in module `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic'.
+Finding identical cells in module `\apb_slave_top'.
+Removed a total of 0 cells.
+
+8.13. Executing OPT_DFF pass (perform DFF optimizations).
+Handling D = Q on $procdff$430 ($adff) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank (removing D path).
+Setting constant 0-bit at position 0 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 1 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 2 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 3 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 4 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 5 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 6 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 7 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 8 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 9 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 10 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 11 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 12 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 13 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 14 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 15 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 16 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 17 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 18 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 19 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 20 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 21 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 22 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 23 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 24 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 25 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 26 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 27 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 28 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 29 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 30 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Setting constant 0-bit at position 31 on $procdff$430 ($dlatch) from module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+
+8.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+Finding unused cells or wires in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+Finding unused cells or wires in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+Finding unused cells or wires in module \apb_slave_top..
+
+8.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Optimizing module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+Optimizing module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Optimizing module apb_slave_top.
+
+8.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+8.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \apb_slave_top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+<suppressed ~6 debug messages>
+
+8.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+  Optimizing cells in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+  Optimizing cells in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+  Optimizing cells in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+  Optimizing cells in module \apb_slave_top.
+Performed a total of 0 changes.
+
+8.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux'.
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank'.
+Finding identical cells in module `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder'.
+Finding identical cells in module `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic'.
+Finding identical cells in module `\apb_slave_top'.
+Removed a total of 0 cells.
+
+8.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+Finding unused cells or wires in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+Finding unused cells or wires in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+Finding unused cells or wires in module \apb_slave_top..
+
+8.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Optimizing module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+Optimizing module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Optimizing module apb_slave_top.
+
+8.23. Finished OPT passes. (There is nothing left to do.)
+
+9. Executing FSM pass (extract and optimize FSM).
+
+9.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+9.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+9.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+9.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+Finding unused cells or wires in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+Finding unused cells or wires in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+Finding unused cells or wires in module \apb_slave_top..
+
+9.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+9.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+9.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+9.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+10. Executing OPT pass (performing simple optimizations).
+
+10.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Optimizing module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+Optimizing module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Optimizing module apb_slave_top.
+
+10.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux'.
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank'.
+Finding identical cells in module `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder'.
+Finding identical cells in module `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic'.
+Finding identical cells in module `\apb_slave_top'.
+Removed a total of 0 cells.
+
+10.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \apb_slave_top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+<suppressed ~6 debug messages>
+
+10.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+  Optimizing cells in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+  Optimizing cells in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+  Optimizing cells in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+  Optimizing cells in module \apb_slave_top.
+Performed a total of 0 changes.
+
+10.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux'.
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank'.
+Finding identical cells in module `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder'.
+Finding identical cells in module `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic'.
+Finding identical cells in module `\apb_slave_top'.
+Removed a total of 0 cells.
+
+10.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+Finding unused cells or wires in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+Finding unused cells or wires in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+Finding unused cells or wires in module \apb_slave_top..
+
+10.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Optimizing module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+Optimizing module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Optimizing module apb_slave_top.
+
+10.9. Finished OPT passes. (There is nothing left to do.)
+
+11. Executing MEMORY pass.
+
+11.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+11.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+11.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+11.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+11.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+11.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+Finding unused cells or wires in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+Finding unused cells or wires in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+Finding unused cells or wires in module \apb_slave_top..
+
+11.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+11.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+11.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+Finding unused cells or wires in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+Finding unused cells or wires in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+Finding unused cells or wires in module \apb_slave_top..
+
+11.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+11.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+12. Executing OPT pass (performing simple optimizations).
+
+12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Optimizing module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+Optimizing module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Optimizing module apb_slave_top.
+
+12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux'.
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank'.
+Finding identical cells in module `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder'.
+Finding identical cells in module `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic'.
+Finding identical cells in module `\apb_slave_top'.
+Removed a total of 0 cells.
+
+12.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \apb_slave_top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+<suppressed ~6 debug messages>
+
+12.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+  Optimizing cells in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+  Optimizing cells in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+  Optimizing cells in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+  Optimizing cells in module \apb_slave_top.
+Performed a total of 0 changes.
+
+12.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux'.
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank'.
+Finding identical cells in module `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder'.
+Finding identical cells in module `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic'.
+Finding identical cells in module `\apb_slave_top'.
+Removed a total of 0 cells.
+
+12.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+Finding unused cells or wires in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+Finding unused cells or wires in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+Finding unused cells or wires in module \apb_slave_top..
+
+12.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Optimizing module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+Optimizing module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Optimizing module apb_slave_top.
+
+12.9. Finished OPT passes. (There is nothing left to do.)
+
+13. Executing TECHMAP pass (map to technology primitives).
+
+13.1. Executing Verilog-2005 frontend: C:\msys64\mingw64\bin\../share/yosys/techmap.v
+Parsing Verilog input from `C:\msys64\mingw64\bin\../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+13.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $adffe.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $logic_or.
+Running "alumacc" on wrapper $extern:wrap:$gt:A_SIGNED=0:A_WIDTH=3:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$gt:A_SIGNED=0:A_WIDTH=3:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$gt:A_SIGNED=0:A_WIDTH=3:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$add:A_SIGNED=0:A_WIDTH=3:B_SIGNED=0:B_WIDTH=1:Y_WIDTH=3:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$add:A_SIGNED=0:A_WIDTH=3:B_SIGNED=0:B_WIDTH=1:Y_WIDTH=3:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$add:A_SIGNED=0:A_WIDTH=3:B_SIGNED=0:B_WIDTH=1:Y_WIDTH=3:394426c56d1a028ba8fdd5469b163e04011def47.
+Using extmapper simplemap for cells of type $eq.
+Using template $paramod$3ef7d3dd227da7627a99c5e5a6a4deb817573e39\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $not.
+Using template $paramod$076c9a7a3f037230073fe14dd4865d470cb48917\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000011 for cells of type $lcu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+Running "alumacc" on wrapper $extern:wrap:$ge:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$ge:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$ge:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$le:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$le:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$le:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$lt:A_SIGNED=0:A_WIDTH=5:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$lt:A_SIGNED=0:A_WIDTH=5:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$lt:A_SIGNED=0:A_WIDTH=5:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $paramod$constmap:336ff46fe406c0cb0726781e9d90092faaecadc0$paramod$a4b7f46292cb4bb8127882e48d249109d27967ba\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shl.
+Using template $paramod$fbc7873bff55778c0b3173955b7e4bce1d9d6834\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $reduce_or.
+Using template $paramod$b0777dc865134c8525a4aa84de8cfa938974cad1\_90_alu for cells of type $alu.
+No more expansions possible.
+<suppressed ~1517 debug messages>
+
+14. Executing OPT pass (performing simple optimizations).
+
+14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Optimizing module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+<suppressed ~588 debug messages>
+Optimizing module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+<suppressed ~384 debug messages>
+Optimizing module apb_slave_top.
+
+14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux'.
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank'.
+Finding identical cells in module `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder'.
+<suppressed ~558 debug messages>
+Finding identical cells in module `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `\apb_slave_top'.
+Removed a total of 187 cells.
+
+14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \apb_slave_top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+  Optimizing cells in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+  Optimizing cells in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+  Optimizing cells in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+  Optimizing cells in module \apb_slave_top.
+Performed a total of 0 changes.
+
+14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux'.
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank'.
+Finding identical cells in module `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder'.
+Finding identical cells in module `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic'.
+Finding identical cells in module `\apb_slave_top'.
+Removed a total of 0 cells.
+
+14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+Finding unused cells or wires in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+Finding unused cells or wires in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+Finding unused cells or wires in module \apb_slave_top..
+Removed 162 unused cells and 709 unused wires.
+<suppressed ~165 debug messages>
+
+14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Optimizing module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+Optimizing module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Optimizing module apb_slave_top.
+
+14.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+14.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \apb_slave_top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+14.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+  Optimizing cells in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+  Optimizing cells in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+  Optimizing cells in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+  Optimizing cells in module \apb_slave_top.
+Performed a total of 0 changes.
+
+14.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux'.
+Finding identical cells in module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank'.
+Finding identical cells in module `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder'.
+Finding identical cells in module `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic'.
+Finding identical cells in module `\apb_slave_top'.
+Removed a total of 0 cells.
+
+14.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+14.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux..
+Finding unused cells or wires in module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank..
+Finding unused cells or wires in module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder..
+Finding unused cells or wires in module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic..
+Finding unused cells or wires in module \apb_slave_top..
+
+14.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux.
+Optimizing module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank.
+Optimizing module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder.
+Optimizing module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic.
+Optimizing module apb_slave_top.
+
+14.16. Finished OPT passes. (There is nothing left to do.)
+"=== stat apb_slave_top (per-module + design total) ==="
+
+15. Printing statistics.
+
+=== $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux ===
+
+   Number of wires:                 86
+   Number of wire bits:           2603
+   Number of public wires:          48
+   Number of public wire bits:    2007
+   Number of ports:                  7
+   Number of port bits:            695
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               1300
+     $_AND_                        660
+     $_MUX_                         32
+     $_OR_                         608
+
+=== $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank ===
+
+   Number of wires:                 59
+   Number of wire bits:           1429
+   Number of public wires:          38
+   Number of public wire bits:    1408
+   Number of ports:                 12
+   Number of port bits:             93
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                633
+     $_AND_                         23
+     $_DFFE_PN0P_                  608
+     $_NOT_                          1
+     $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux      1
+
+=== $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder ===
+
+   Number of wires:                 93
+   Number of wire bits:            449
+   Number of public wires:           9
+   Number of public wire bits:      63
+   Number of ports:                  5
+   Number of port bits:             55
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                215
+     $_AND_                         74
+     $_MUX_                         68
+     $_NOT_                         36
+     $_OR_                          37
+
+=== $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic ===
+
+   Number of wires:                 44
+   Number of wire bits:            115
+   Number of public wires:          20
+   Number of public wire bits:      25
+   Number of ports:                 14
+   Number of port bits:             16
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 39
+     $_AND_                          6
+     $_DFFE_PN0P_                    3
+     $_MUX_                          8
+     $_NOT_                         10
+     $_OR_                           7
+     $_XOR_                          5
+
+=== apb_slave_top ===
+
+   Number of wires:                 17
+   Number of wire bits:            131
+   Number of public wires:          17
+   Number of public wire bits:     131
+   Number of ports:                 11
+   Number of port bits:            106
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  4
+     $_AND_                          1
+     $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank      1
+     $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder      1
+     $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic      1
+
+=== design hierarchy ===
+
+   apb_slave_top                     1
+     $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank      1
+       $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux      1
+     $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder      1
+     $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic      1
+
+   Number of wires:                299
+   Number of wire bits:           4727
+   Number of public wires:         132
+   Number of public wire bits:    3634
+   Number of ports:                 49
+   Number of port bits:            965
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               2187
+     $_AND_                        764
+     $_DFFE_PN0P_                  611
+     $_MUX_                        108
+     $_NOT_                         47
+     $_OR_                         652
+     $_XOR_                          5
+
+"=== check ==="
+
+16. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux...
+Checking module $paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank...
+Checking module $paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder...
+Checking module $paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic...
+Checking module apb_slave_top...
+Found and reported 0 problems.
+
+17. Executing Verilog backend.
+
+17.1. Executing BMUXMAP pass.
+
+17.2. Executing DEMUXMAP pass.
+Dumping module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\read_mux'.
+Dumping module `$paramod$4c0af976f391ffcc48b4700127aad9f266431714\register_bank'.
+Dumping module `$paramod$6e002ea306cd4c05fdd263b3613ab3a1cb836e09\apb_decoder'.
+Dumping module `$paramod$83773df71db6496904ca32c27c92cf15bbe6ba7e\apb_response_logic'.
+Dumping module `\apb_slave_top'.
+
+18. Executing JSON backend.
+"=== SYNTH PASS ==="
+
+Warnings: 4 unique messages, 8 total
+End of script. Logfile hash: 3cc4a189a4
+Yosys 0.56 (git sha1 9c447ad9d4b1ea589369364eea38b4d70da2c599, x86_64-w64-mingw32-g++ 15.2.0 -march=nocona -msahf -mtune=generic -O2 -fstack-protector-strong -O3)
+Time spent: 2% 18x opt_expr (0 sec), 2% 13x opt_merge (0 sec), ...

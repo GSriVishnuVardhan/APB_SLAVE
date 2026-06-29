@@ -2,7 +2,7 @@
 
 module apb_slave_top
 #(
-    parameter bit USE_APB_FSM = 1'b0,
+    parameter USE_APB_FSM = 0,
     parameter MAX_WAIT_CYCLES = 7,
     parameter ADDRESS_WIDTH = 32,
     parameter logic [ADDRESS_WIDTH-1:0] SLAVE_BASE_ADDR = 32'h4000_0000,

@@ -13,7 +13,7 @@
 
 ```
 docs/     Specifications and register map
-rtl/      DUT (apb_slave_top, decoder, register_bank, apb_resp)
+rtl/      DUT (apb_slave_top, decoder, register_bank, read_mux, apb_response_logic)
 tb/       Testbench, scoreboard, coverage, protocol checker
 sim/      run_sim.sh, filelist.f, build artifacts (obj_dir/)
 reports/  Generated: sim.log, coverage_summary.txt, regression_report.txt
@@ -45,5 +45,5 @@ Reports are written to `reports/`:
 - `verification_spec.txt` — tests, scoreboard, coverage goals
 - `register_map.txt` — register offsets and fields
 - `verilator_notes.md` — Verilator 5.x constraints
-- `apb3_spec.pdf` — APB3 protocol timing reference
-- `apb_block_diagram.pdf` — block diagram
+- `CLIENT_ONE_PAGER.md` — freelance / client proposal summary
+- `images/apb_block_diagram.svg` — RTL block diagram (PNG export available)

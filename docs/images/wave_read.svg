@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="484" viewBox="0 0 760 484" font-family="Consolas, monospace">
+<defs><style>.t{font-size:14px;font-family:Segoe UI,Arial,sans-serif;font-weight:600;fill:#0f172a}.n{font-size:12px;fill:#334155;font-family:Consolas,monospace}.p{font-size:11px;fill:#64748b;font-family:Segoe UI,Arial,sans-serif}.hi{stroke:#2563eb;stroke-width:2.5;fill:none}.lo{stroke:#2563eb;stroke-width:2.5;fill:none;stroke-dasharray:4 3}.bus{stroke:#059669;stroke-width:2;fill:none}</style></defs>
+<rect width="760" height="484" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" class="t">APB3 Read (zero wait states)</text>
+<text x="12" y="48" class="n">PCLK</text>
+<line x1="110" y1="62" x2="190" y2="62" class="lo"/>
+<line x1="190" y1="44" x2="270" y2="44" class="hi"/>
+<line x1="190" y1="44" x2="190" y2="62" class="hi"/>
+<line x1="270" y1="62" x2="350" y2="62" class="lo"/>
+<line x1="270" y1="44" x2="270" y2="62" class="lo"/>
+<line x1="350" y1="44" x2="430" y2="44" class="hi"/>
+<line x1="350" y1="44" x2="350" y2="62" class="hi"/>
+<line x1="430" y1="62" x2="510" y2="62" class="lo"/>
+<line x1="430" y1="44" x2="430" y2="62" class="lo"/>
+<text x="12" y="100" class="n">PSEL</text>
+<line x1="190" y1="96" x2="430" y2="96" class="hi"/>
+<line x1="190" y1="96" x2="190" y2="114" class="hi"/>
+<text x="12" y="152" class="n">PENABLE</text>
+<line x1="350" y1="148" x2="430" y2="148" class="hi"/>
+<line x1="350" y1="148" x2="350" y2="166" class="hi"/>
+<text x="12" y="204" class="n">PWRITE</text>
+<text x="12" y="256" class="n">PADDR</text>
+<text x="200" y="256" class="n">ADDR</text>
+<text x="12" y="308" class="n">PRDATA</text>
+<text x="360" y="308" class="n">DATA</text>
+<text x="12" y="360" class="n">PREADY</text>
+<line x1="350" y1="356" x2="430" y2="356" class="hi"/>
+<line x1="350" y1="356" x2="350" y2="374" class="hi"/>
+<text x="270" y="432" text-anchor="middle" class="p">SETUP</text>
+<line x1="190" y1="418" x2="350" y2="418" stroke="#cbd5e1" stroke-width="1"/>
+<text x="390" y="432" text-anchor="middle" class="p">ACCESS</text>
+<line x1="350" y1="418" x2="430" y2="418" stroke="#cbd5e1" stroke-width="1"/>
+</svg>

@@ -59,9 +59,10 @@ apb_slave_top #(
 ## RTL file list (synthesis order)
 
 ```
+rtl/read_mux.sv
 rtl/apb_decoder.sv
 rtl/register_bank.sv
-rtl/apb_resp.sv
+rtl/apb_response_logic.sv
 rtl/apb_slave_top.sv
 ```
 

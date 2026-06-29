@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  lint-and-sim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Verilator
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y verilator g++ make
+
+      - name: RTL lint
+        working-directory: sim
+        run: |
+          verilator --lint-only -Wall -Wno-fatal --sv \
+            --top-module apb_slave_top \
+            ../rtl/read_mux.sv ../rtl/apb_decoder.sv \
+            ../rtl/register_bank.sv ../rtl/apb_response_logic.sv \
+            ../rtl/apb_slave_top.sv
+
+      - name: Simulation regression
+        working-directory: sim
+        run: bash run_sim.sh
+
+      - name: Upload regression reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-reports
+          path: reports/
+
+  wave-and-synth:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y verilator g++ make yosys
+
+      - name: Wave capture (FST)
+        working-directory: sim
+        run: |
+          bash run_wave.sh
+          test -f ../reports/wave/apb_wave.fst
+          ls -la ../reports/wave/
+
+      - name: Yosys synthesis
+        working-directory: sim
+        run: |
+          bash synth.sh
+          test -f ../reports/synth/synth_report.txt
+          grep -q "Number of cells" ../reports/synth/synth_report.txt
+
+      - name: Upload wave + synth reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: wave-synth-reports
+          path: |
+            reports/wave/
+            reports/synth/

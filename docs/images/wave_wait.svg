@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="276" viewBox="0 0 760 276" font-family="Consolas, monospace">
+<defs><style>.t{font-size:14px;font-family:Segoe UI,Arial,sans-serif;font-weight:600;fill:#0f172a}.n{font-size:12px;fill:#334155;font-family:Consolas,monospace}.p{font-size:11px;fill:#64748b;font-family:Segoe UI,Arial,sans-serif}.hi{stroke:#2563eb;stroke-width:2.5;fill:none}.lo{stroke:#2563eb;stroke-width:2.5;fill:none;stroke-dasharray:4 3}.bus{stroke:#059669;stroke-width:2;fill:none}</style></defs>
+<rect width="760" height="276" fill="#fff"/>
+<text x="380" y="24" text-anchor="middle" class="t">Write with Wait States (N=2)</text>
+<text x="12" y="48" class="n">PCLK</text>
+<line x1="110" y1="62" x2="180" y2="62" class="lo"/>
+<line x1="180" y1="44" x2="250" y2="44" class="hi"/>
+<line x1="180" y1="44" x2="180" y2="62" class="hi"/>
+<line x1="250" y1="62" x2="320" y2="62" class="lo"/>
+<line x1="250" y1="44" x2="250" y2="62" class="lo"/>
+<line x1="320" y1="44" x2="390" y2="44" class="hi"/>
+<line x1="320" y1="44" x2="320" y2="62" class="hi"/>
+<line x1="390" y1="62" x2="460" y2="62" class="lo"/>
+<line x1="390" y1="44" x2="390" y2="62" class="lo"/>
+<line x1="460" y1="44" x2="530" y2="44" class="hi"/>
+<line x1="460" y1="44" x2="460" y2="62" class="hi"/>
+<line x1="530" y1="62" x2="600" y2="62" class="lo"/>
+<line x1="530" y1="44" x2="530" y2="62" class="lo"/>
+<line x1="600" y1="44" x2="670" y2="44" class="hi"/>
+<line x1="600" y1="44" x2="600" y2="62" class="hi"/>
+<line x1="670" y1="62" x2="740" y2="62" class="lo"/>
+<line x1="670" y1="44" x2="670" y2="62" class="lo"/>
+<text x="12" y="100" class="n">PENABLE</text>
+<line x1="320" y1="96" x2="670" y2="96" class="hi"/>
+<line x1="320" y1="96" x2="320" y2="114" class="hi"/>
+<text x="12" y="152" class="n">PREADY</text>
+<line x1="530" y1="148" x2="670" y2="148" class="hi"/>
+<line x1="530" y1="148" x2="530" y2="166" class="hi"/>
+<text x="460" y="224" text-anchor="middle" class="p">wait</text>
+<line x1="390" y1="210" x2="530" y2="210" stroke="#cbd5e1" stroke-width="1"/>
+<text x="530" y="224" text-anchor="middle" class="p">wait</text>
+<line x1="460" y1="210" x2="600" y2="210" stroke="#cbd5e1" stroke-width="1"/>
+<text x="635" y="224" text-anchor="middle" class="p">OK</text>
+<line x1="600" y1="210" x2="670" y2="210" stroke="#cbd5e1" stroke-width="1"/>
+</svg>

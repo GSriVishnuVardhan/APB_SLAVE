@@ -1,12 +1,11 @@
-// APB3 protocol checker (Verilator-friendly immediate checks)
+// APB3 protocol checker — Verilator-friendly procedural checks (always-on in regression).
 
 `ifndef APB_PROTOCOL_CHECKER
 `define APB_PROTOCOL_CHECKER
-module apb_protocol_checker
-#(
+
+module apb_protocol_checker #(
     parameter ADDRESS_WIDTH = 32
-)
-(
+)(
     apb_if #(ADDRESS_WIDTH, 32) vif
 );
     int violation_count;
@@ -19,13 +18,14 @@ module apb_protocol_checker
         if (!vif.rst_n)
             ;
         else if (vif.penable && !vif.psel) begin
-            violation_count = violation_count + 1;
-            $display("PROTOCOL VIOLATION: PENABLE high without PSEL");
+            violation_count++;
+            $display("PROTOCOL VIOLATION [%0d]: PENABLE high without PSEL", violation_count);
         end
         else if (vif.pready && !(vif.psel && vif.penable)) begin
-            violation_count = violation_count + 1;
-            $display("PROTOCOL VIOLATION: PREADY high outside ACCESS");
+            violation_count++;
+            $display("PROTOCOL VIOLATION [%0d]: PREADY high outside ACCESS phase", violation_count);
         end
     end
 endmodule
+
 `endif

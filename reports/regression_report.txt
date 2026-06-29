@@ -7,6 +7,7 @@ USE_APB_FSM: 1
 Tests: ALL PASSED
 Scoreboard errors: 0
 Protocol violations: 0
+SVA assertions: N/A (Verilator — use apb_protocol_checker)
 Functional coverage: 100.0% (goal >= 95%)
 Coverage goal: PASS
 

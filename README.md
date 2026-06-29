@@ -1,75 +1,222 @@
 # APB3 Slave Peripheral IP
 
-Reusable **AMBA APB3 slave** with a 20-register bank, configurable wait states, optional protocol FSM, and a self-checking SystemVerilog testbench verified with Verilator.
+[![CI](https://github.com/GSriVishnuVardhan/APB_SLAVE/actions/workflows/ci.yml/badge.svg)](https://github.com/GSriVishnuVardhan/APB_SLAVE/actions/workflows/ci.yml)
 
-Designed as a portfolio-quality RTL block for freelance IP delivery and SoC integration practice.
+Production-style **AMBA APB3 slave** with parameterized register bank, modular RTL hierarchy, and a complete **UVM-lite** verification environment (driver, monitor, scoreboard, reference model, coverage, assertions).
+Built as a portfolio IP block for freelance RTL/verification work.
 
-## Verification status
+---
+
+## Overview
+
+### What is APB?
+
+The **Advanced Peripheral Bus (APB)** is ARM's low-complexity, low-power bus for connecting peripherals (UART, timers, GPIO, control registers) to a system interconnect. APB3 uses a **two-phase transfer**: **SETUP** (`PSEL=1`, `PENABLE=0`) then **ACCESS** (`PSEL=1`, `PENABLE=1`). The slave completes the beat by asserting **`PREADY`**.
+
+This IP implements a **memory-mapped 32-bit register slave** with configurable wait states and optional protocol FSM.
+
+### Features
+
+| Feature | Description |
+|---------|-------------|
+| **APB3 compliant** | SETUP / ACCESS sequencing, `PREADY` wait states, `PSLVERR` |
+| **Parameterized** | Data width, base address, register counts, max wait cycles |
+| **Register bank** | 4 control + 16 user registers (20 total) |
+| **Error response** | Illegal address, unaligned access, STATUS write → `PSLVERR` |
+| **Optional FSM** | `USE_APB_FSM` for IDLE/SETUP/ACCESS tracking + live STATUS |
+| **Verified** | 10 tests, 100% functional coverage, 0 scoreboard errors |
+| **Lint-clean RTL** | Verilator `--lint-only -Wall` — 0 errors, 0 warnings |
+| **Synthesis-ready** | Yosys open-source flow — `make synth` |
+
+### Verification status
 
 | Metric | Result |
 |--------|--------|
-| Directed tests | 10 / 10 pass |
-| Scoreboard errors | 0 |
-| Protocol violations | 0 |
-| Functional coverage | **100%** (24 / 24 bins, goal ≥ 95%) |
+| RTL lint (Verilator) | **PASS** — 0 errors, 0 warnings |
+| Yosys synthesis | **PASS** — 2187 cells, 611 FFs, 0 check errors |
+| Directed tests | **10 / 10 PASS** |
+| Scoreboard errors | **0** |
+| Protocol violations | **0** |
+| Functional coverage | **100%** (24/24 bins) |
 
-Artifacts: [`reports/regression_report.txt`](reports/regression_report.txt), [`reports/coverage_summary.txt`](reports/coverage_summary.txt)
+Details: [`docs/VERIFICATION_RESULTS.md`](docs/VERIFICATION_RESULTS.md)
 
-Spec audit: [`docs/SPEC_COMPLIANCE.md`](docs/SPEC_COMPLIANCE.md)
+![Regression summary](docs/images/regression_summary.png)
 
-## Features
+---
+## Block diagram
 
-- 32-bit address and data; default base `0x4000_0000` (256-byte aligned window)
-- 4 control + 16 user registers — see [`docs/register_map.txt`](docs/register_map.txt)
-- Runtime **`num_wait_cycles`** (0–7): APB3 wait states before `pready` asserts
-- Optional **`USE_APB_FSM`**: IDLE / SETUP / ACCESS FSM with live STATUS busy/error bits
-- Illegal address, unaligned access, and STATUS write → `PSLVERR`
-- Modular RTL: decoder, register bank, response logic, top wrapper
+![APB3 slave RTL hierarchy](docs/images/apb_block_diagram.png)
 
-## Quick start
+SVG source: [`docs/images/apb_block_diagram.svg`](docs/images/apb_block_diagram.svg)
 
-**Requirements:** Verilator 5.x, MSYS2 MINGW64 (or Linux with Verilator in `PATH`)
+### RTL hierarchy
+| Module | File | Function |
+|--------|------|----------|
+| `apb_slave_top` | `rtl/apb_slave_top.sv` | Top-level integration |
+| `apb_decoder` | `rtl/apb_decoder.sv` | Address decode, `reg_sel`, legality |
+| `register_bank` | `rtl/register_bank.sv` | Register storage + write strobes |
+| `read_mux` | `rtl/read_mux.sv` | Read data multiplexing |
+| `apb_response_logic` | `rtl/apb_response_logic.sv` | `PREADY`, `PSLVERR`, wait states, optional FSM |
+
+---
+
+## Register map
+
+Base address: **`0x4000_0000`** (parameter `SLAVE_BASE_ADDR`)
+
+| Offset | Name | Access | Description |
+|--------|------|--------|-------------|
+| `0x00` | CTRL | RW | bit0 Enable, bit1 Interrupt Enable |
+| `0x04` | STATUS | RO | bit0 Busy, bit1 Error (live when `USE_APB_FSM=1`) |
+| `0x08` | CONFIG0 | RW | Configuration word 0 |
+| `0x0C` | CONFIG1 | RW | Configuration word 1 |
+| `0x10`–`0x4C` | USER[0:15] | RW | User-defined registers |
+
+**Rules:** word-aligned only; offsets `0x50`–`0xFF` in the 256 B slot → `PSLVERR`; STATUS write → `PSLVERR`.
+
+Full spec: [`docs/register_map.txt`](docs/register_map.txt)
+
+---
+
+## Timing diagrams
+
+| Write (zero wait) | Read (zero wait) |
+|-------------------|------------------|
+| ![Write timing](docs/images/wave_write.png) | ![Read timing](docs/images/wave_read.png) |
+
+| SLVERR (illegal access) | Wait states (N=2) |
+|-------------------------|-------------------|
+| ![SLVERR timing](docs/images/wave_slverr.png) | ![Wait timing](docs/images/wave_wait.png) |
+
+With wait states (`num_wait_cycles = N`), `PREADY` stays low for **N** ACCESS cycles, then asserts high for **one** completion cycle.
+
+More detail: [`docs/VERIFICATION_RESULTS.md`](docs/VERIFICATION_RESULTS.md)
+
+---
+## Directory structure
+
+```
+APB_SLAVE/
+├── LICENSE
+├── README.md
+├── rtl/                    Synthesizable design
+│   ├── apb_slave_top.sv
+│   ├── apb_decoder.sv
+│   ├── register_bank.sv
+│   ├── read_mux.sv
+│   └── apb_response_logic.sv
+├── tb/                     UVM-lite verification IP
+│   ├── tb_apb_slave.sv     Test top + 10 directed tests
+│   ├── apb_if.sv           Virtual interface
+│   ├── apb_transaction.sv
+│   ├── apb_driver.sv       Stimulus
+│   ├── apb_monitor.sv      Monitor → mailboxes
+│   ├── apb_ref_model.sv    Golden reference model
+│   ├── apb_scoreboard.sv   DUT vs ref model
+│   ├── apb_coverage.sv     Functional coverage
+│   ├── apb_protocol_checker.sv   Verilator checks
+│   └── apb_assertions.sv   SVA (Questa/Xcelium)
+├── sim/
+│   ├── Makefile            make sim | lint | wave
+│   ├── run_sim.sh          Verilator regression
+│   ├── lint.sh             RTL lint-only
+│   └── filelist.f
+├── docs/                   Specs + integration + results
+│   └── images/             Block diagram + timing diagrams
+└── reports/                Regression + coverage artifacts
+```
+
+Architecture: [`docs/VERIFICATION_ARCHITECTURE.md`](docs/VERIFICATION_ARCHITECTURE.md)
+
+---
+
+## Simulation
+
+### Verilator (primary — tested)
+
+MSYS2 MINGW64:
 
 ```bash
 cd sim
-./run_sim.sh
+make sim          # or: ./run_sim.sh
+make lint         # RTL lint-only
+make wave         # short traced sim → reports/wave/apb_wave.fst
+make synth        # Yosys open-source synthesis
 ```
 
-Reports are written to `reports/` (`sim.log`, `regression_report.txt`, `coverage_summary.txt`).
+Open FST in GTKWave:
 
-## Repository layout
+```bash
+# One-time: pacman -S mingw-w64-x86_64-gtkwave  (then new MINGW64 shell)
+cd sim
+make wave-view
+```
 
-| Path | Description |
-|------|-------------|
-| `rtl/` | Synthesizable DUT — `apb_slave_top`, decoder, register bank, response logic |
-| `tb/` | UVM-style SV env: driver, monitor, scoreboard, coverage, protocol checker |
-| `sim/` | Verilator compile/run script and file list |
-| `docs/` | Design spec, verification plan, register map, integration guide, PDFs |
-| `reports/` | Checked-in regression and coverage summaries (re-run sim to refresh) |
+Or manually: `cd reports/wave && gtkwave apb_wave.fst apb_wave.tcl`
 
-## Documentation
+Do not use `apb_wave.gtkw` — use the Tcl helper or FST directly.
 
-| Document | Purpose |
-|----------|---------|
-| [Design spec](docs/design_spec.txt) | RTL parameters, protocol behavior, FSM option |
-| [Verification spec](docs/verification_spec.txt) | Test list, scoreboard rules, coverage goals |
-| [Register map](docs/register_map.txt) | Offsets, RW/RO, addressing rules |
-| [Integration guide](docs/INTEGRATION.md) | Instantiation, ports, synthesis file list |
-| [Verilator notes](docs/verilator_notes.md) | Simulator constraints and workarounds |
-| [Project README](docs/README.md) | Milestones and directory overview |
+![GTKWave write capture](docs/images/gtkwave/gtkwave_write.png)
 
-## Milestones
+More wave captures: [`docs/VERIFICATION_RESULTS.md`](docs/VERIFICATION_RESULTS.md)
 
-| Milestone | Description | Status |
-|-----------|-------------|--------|
-| M0 | Design + verification specifications | Done |
-| M1 | Minimal RTL + testbench MVP | Done |
-| M2 | Full directed + random test suite | Done |
-| M3 | Functional coverage, protocol checker, regression reports | Done |
+### RTL lint
 
-## Integration
+Lint is run on synthesizable RTL only (`apb_slave_top` and submodules), via `sim/lint.sh`:
 
-Instantiate `apb_slave_top` on your APB fabric. See [`docs/INTEGRATION.md`](docs/INTEGRATION.md) for parameters, port list, and RTL file order.
+```bash
+verilator --lint-only -Wall -Wno-fatal --sv --top-module apb_slave_top rtl/*.sv
+```
+
+**Last run:** 2026-06-27 — PASS (Verilator 5.046) — no inferred latches, unused signals, or synthesis warnings reported.
+
+Re-check after RTL changes: `cd sim && make lint`
+
+### Other simulators
+
+| Tool | Command |
+|------|---------|
+| **Make** | `cd sim && make sim` |
+| **Questa** | `vlog -sv -f filelist.f ../tb/apb_assertions.sv` then `vsim tb_apb_slave` |
+| **Xcelium** | `xrun -sv -top tb_apb_slave -f filelist.f ../tb/apb_assertions.sv` |
+| **Icarus** | Not supported (TB uses SV mailboxes + timing) |
+
+Requirements: **Verilator 5.x** with `--timing --binary --sv`
+
+### Open-source synthesis (Yosys)
+
+```bash
+cd sim
+make synth
+```
+
+**Generic logic synthesis only** — no foundry/FPGA library loaded. See [Generic vs technology mapping](docs/SYNTHESIS_RESULTS.md#generic-vs-technology-mapping).
+
+Reports: [`reports/synth/synth_summary.txt`](reports/synth/synth_summary.txt) (readable) · [`reports/synth/synth_report.txt`](reports/synth/synth_report.txt) (full log) · Details: [`docs/SYNTHESIS_RESULTS.md`](docs/SYNTHESIS_RESULTS.md)
+| Check | Tool |
+|-------|------|
+| RTL lint | Verilator `--lint-only -Wall` |
+| Simulation | Verilator regression (10 tests) |
+| Waveform | Verilator FST + GTKWave |
+| Synthesis | Yosys `proc → techmap → stat` |
+
+---
+
+## Verification environment
+
+| Component | Present |
+|-----------|---------|
+| Driver | ✅ `apb_driver.sv` |
+| Monitor | ✅ `apb_monitor.sv` |
+| Scoreboard | ✅ `apb_scoreboard.sv` |
+| Reference model | ✅ `apb_ref_model.sv` |
+| Functional coverage | ✅ `apb_coverage.sv` |
+| Assertions | ✅ `apb_protocol_checker.sv` + `apb_assertions.sv` |
+
+---
+
+## Integration snippet
 
 ```systemverilog
 apb_slave_top #(
@@ -91,16 +238,43 @@ apb_slave_top #(
 );
 ```
 
-## Tooling
+Full guide: [`docs/INTEGRATION.md`](docs/INTEGRATION.md)
 
-- **Simulation:** Verilator 5.x (`--timing --binary --sv`)
-- **Synthesis:** Standard SystemVerilog-2012 subset; no vendor primitives in RTL
+---
+
+## Documentation index
+
+| Document | Content |
+|----------|---------|
+| [Design spec](docs/design_spec.txt) | RTL behavior, parameters |
+| [Verification spec](docs/verification_spec.txt) | Test plan, coverage goals |
+| [Register map](docs/register_map.txt) | Offsets and fields |
+| [Integration](docs/INTEGRATION.md) | Ports, file list, instantiation |
+| [Verification architecture](docs/VERIFICATION_ARCHITECTURE.md) | TB block diagram |
+| [Verification results](docs/VERIFICATION_RESULTS.md) | Coverage, waveforms, reports |
+| [Synthesis results](docs/SYNTHESIS_RESULTS.md) | Yosys flow + cell statistics |
+| [Client one-pager](docs/CLIENT_ONE_PAGER.md) | Freelance / proposal summary |
+| [FPGA roadmap](docs/FPGA_ROADMAP.md) | Future Vivado demo (Level 5) |
+| [Spec compliance](docs/SPEC_COMPLIANCE.md) | RTL/TB vs spec audit |
+
+---
+
+## Milestones
+
+| Milestone | Status |
+|-----------|--------|
+| M0 — Spec | ✅ |
+| M1 — RTL + TB MVP | ✅ |
+| M2 — Full test suite | ✅ |
+| M3 — Coverage + reports | ✅ |
+| M3b — GTKWave FST + Yosys synth flow | ✅ |
+| M4 — FPGA demo | 📋 Planned ([roadmap](docs/FPGA_ROADMAP.md)) |
+
+---
 
 ## License
 
-Apache License 2.0 — see [LICENSE](LICENSE).
-
-This repository is a public portfolio reference. For commercial redistribution, white-label delivery, or project-specific licensing, contact the maintainer via GitHub.
+Apache License 2.0 — see [LICENSE](LICENSE). Commercial licensing available on request.
 
 ## Author
 

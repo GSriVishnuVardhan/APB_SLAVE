@@ -1,337 +1,337 @@
-Assertions are disabled
+SVA module disabled — using apb_protocol_checker for Verilator
 ==================Test 1: RESET==============
 Reset asserted for 3 cycles
 Reset deasserted
 Reading from register 40000000
 Monitor: Transaction: Address: 40000000, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000000 is 00000000 and pslverr is 0
-Scoreboard: Read from register 00000000: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[0] OK: 00000000
 Monitor: Transaction: Address: 40000000, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 40000004
-Scoreboard: Read from register 00000000: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[0] OK: 00000000
 Read complete: Data read from register 40000004 is 00000001 and pslverr is 0
 Monitor: Transaction: Address: 40000004, Write data: 00000000, Read data: 00000001, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: STATUS read (dynamic): DATA: 00000001
+Scoreboard: STATUS read (live): 00000001
 Reading from register 40000008
 Monitor: Transaction: Address: 40000008, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000008 is 00000000 and pslverr is 0
-Scoreboard: Read from register 00000002: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[2] OK: 00000000
 Monitor: Transaction: Address: 40000008, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 4000000c
-Scoreboard: Read from register 00000002: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[2] OK: 00000000
 Read complete: Data read from register 4000000c is 00000000 and pslverr is 0
 Monitor: Transaction: Address: 4000000c, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 00000003: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[3] OK: 00000000
 Reading from register 40000010
 Monitor: Transaction: Address: 40000010, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000010 is 00000000 and pslverr is 0
-Scoreboard: Read from register 00000004: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[4] OK: 00000000
 Monitor: Transaction: Address: 40000010, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 40000014
-Scoreboard: Read from register 00000004: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[4] OK: 00000000
 Read complete: Data read from register 40000014 is 00000000 and pslverr is 0
 Monitor: Transaction: Address: 40000014, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 00000005: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[5] OK: 00000000
 Reading from register 40000018
 Monitor: Transaction: Address: 40000018, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000018 is 00000000 and pslverr is 0
-Scoreboard: Read from register 00000006: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[6] OK: 00000000
 Monitor: Transaction: Address: 40000018, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 4000001c
-Scoreboard: Read from register 00000006: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[6] OK: 00000000
 Read complete: Data read from register 4000001c is 00000000 and pslverr is 0
 Monitor: Transaction: Address: 4000001c, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 00000007: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[7] OK: 00000000
 Reading from register 40000020
 Monitor: Transaction: Address: 40000020, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000020 is 00000000 and pslverr is 0
-Scoreboard: Read from register 00000008: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[8] OK: 00000000
 Monitor: Transaction: Address: 40000020, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 40000024
-Scoreboard: Read from register 00000008: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[8] OK: 00000000
 Read complete: Data read from register 40000024 is 00000000 and pslverr is 0
 Monitor: Transaction: Address: 40000024, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 00000009: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[9] OK: 00000000
 Reading from register 40000028
 Monitor: Transaction: Address: 40000028, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000028 is 00000000 and pslverr is 0
-Scoreboard: Read from register 0000000a: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[10] OK: 00000000
 Monitor: Transaction: Address: 40000028, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 4000002c
-Scoreboard: Read from register 0000000a: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[10] OK: 00000000
 Read complete: Data read from register 4000002c is 00000000 and pslverr is 0
 Monitor: Transaction: Address: 4000002c, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 0000000b: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[11] OK: 00000000
 Reading from register 40000030
 Monitor: Transaction: Address: 40000030, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000030 is 00000000 and pslverr is 0
-Scoreboard: Read from register 0000000c: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[12] OK: 00000000
 Monitor: Transaction: Address: 40000030, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 40000034
-Scoreboard: Read from register 0000000c: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[12] OK: 00000000
 Read complete: Data read from register 40000034 is 00000000 and pslverr is 0
 Monitor: Transaction: Address: 40000034, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 0000000d: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[13] OK: 00000000
 Reading from register 40000038
 Monitor: Transaction: Address: 40000038, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000038 is 00000000 and pslverr is 0
-Scoreboard: Read from register 0000000e: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[14] OK: 00000000
 Monitor: Transaction: Address: 40000038, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 4000003c
-Scoreboard: Read from register 0000000e: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[14] OK: 00000000
 Read complete: Data read from register 4000003c is 00000000 and pslverr is 0
 Monitor: Transaction: Address: 4000003c, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 0000000f: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[15] OK: 00000000
 Reading from register 40000040
 Monitor: Transaction: Address: 40000040, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000040 is 00000000 and pslverr is 0
-Scoreboard: Read from register 00000010: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[16] OK: 00000000
 Monitor: Transaction: Address: 40000040, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 40000044
-Scoreboard: Read from register 00000010: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[16] OK: 00000000
 Read complete: Data read from register 40000044 is 00000000 and pslverr is 0
 Monitor: Transaction: Address: 40000044, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 00000011: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[17] OK: 00000000
 Reading from register 40000048
 Monitor: Transaction: Address: 40000048, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000048 is 00000000 and pslverr is 0
-Scoreboard: Read from register 00000012: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[18] OK: 00000000
 Monitor: Transaction: Address: 40000048, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 4000004c
-Scoreboard: Read from register 00000012: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[18] OK: 00000000
 Read complete: Data read from register 4000004c is 00000000 and pslverr is 0
 Monitor: Transaction: Address: 4000004c, Write data: 00000000, Read data: 00000000, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 00000013: DATA: 00000000 is OKAY!
+Scoreboard: Read reg[19] OK: 00000000
 Test passed: TEST 1: RESET: Scoreboard passed
 ==================Test 2: SINGLE WRITE==============
 Writing to register 40000000
 Monitor: Transaction: Address: 40000000, Write data: 33339999, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete: Data written to register 40000000 is 33339999 and pslverr is 0
-Scoreboard: Write to register 00000000: 33339999
+Scoreboard: Write reg[0] <= 33339999
 Monitor: Transaction: Address: 40000000, Write data: 33339999, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete
 Reading from register 40000000
-Scoreboard: Write to register 00000000: 33339999
+Scoreboard: Write reg[0] <= 33339999
 Read complete: Data read from register 40000000 is 33339999 and pslverr is 0
 Monitor: Transaction: Address: 40000000, Write data: 33339999, Read data: 33339999, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 00000000: DATA: 33339999 is OKAY!
+Scoreboard: Read reg[0] OK: 33339999
 Test passed: TEST 2: SINGLE WRITE: Scoreboard passed
 ==================Test 3: FULL REGISTER SWEEP==============
 Writing to register 40000000
 Monitor: Transaction: Address: 40000000, Write data: 39393939, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete: Data written to register 40000000 is 39393939 and pslverr is 0
-Scoreboard: Write to register 00000000: 39393939
+Scoreboard: Write reg[0] <= 39393939
 Monitor: Transaction: Address: 40000000, Write data: 39393939, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete
 Writing to register 40000008
-Scoreboard: Write to register 00000000: 39393939
+Scoreboard: Write reg[0] <= 39393939
 Write complete: Data written to register 40000008 is 3939393b and pslverr is 0
 Monitor: Transaction: Address: 40000008, Write data: 3939393b, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
-Scoreboard: Write to register 00000002: 3939393b
+Scoreboard: Write reg[2] <= 3939393b
 Write complete
 Writing to register 4000000c
 Monitor: Transaction: Address: 4000000c, Write data: 3939393b, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete: Data written to register 4000000c is 3939393b and pslverr is 0
-Scoreboard: Write to register 00000003: 3939393b
+Scoreboard: Write reg[3] <= 3939393b
 Monitor: Transaction: Address: 4000000c, Write data: 3939393b, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete
 Writing to register 40000010
-Scoreboard: Write to register 00000003: 3939393b
+Scoreboard: Write reg[3] <= 3939393b
 Write complete: Data written to register 40000010 is 3939393d and pslverr is 0
 Monitor: Transaction: Address: 40000010, Write data: 3939393d, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
-Scoreboard: Write to register 00000004: 3939393d
+Scoreboard: Write reg[4] <= 3939393d
 Write complete
 Writing to register 40000014
 Monitor: Transaction: Address: 40000014, Write data: 3939393d, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete: Data written to register 40000014 is 3939393d and pslverr is 0
-Scoreboard: Write to register 00000005: 3939393d
+Scoreboard: Write reg[5] <= 3939393d
 Monitor: Transaction: Address: 40000014, Write data: 3939393d, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete
 Writing to register 40000018
-Scoreboard: Write to register 00000005: 3939393d
+Scoreboard: Write reg[5] <= 3939393d
 Write complete: Data written to register 40000018 is 3939393f and pslverr is 0
 Monitor: Transaction: Address: 40000018, Write data: 3939393f, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
-Scoreboard: Write to register 00000006: 3939393f
+Scoreboard: Write reg[6] <= 3939393f
 Write complete
 Writing to register 4000001c
 Monitor: Transaction: Address: 4000001c, Write data: 3939393f, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete: Data written to register 4000001c is 3939393f and pslverr is 0
-Scoreboard: Write to register 00000007: 3939393f
+Scoreboard: Write reg[7] <= 3939393f
 Monitor: Transaction: Address: 4000001c, Write data: 3939393f, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete
 Writing to register 40000020
-Scoreboard: Write to register 00000007: 3939393f
+Scoreboard: Write reg[7] <= 3939393f
 Write complete: Data written to register 40000020 is 39393939 and pslverr is 0
 Monitor: Transaction: Address: 40000020, Write data: 39393939, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
-Scoreboard: Write to register 00000008: 39393939
+Scoreboard: Write reg[8] <= 39393939
 Write complete
 Writing to register 40000024
 Monitor: Transaction: Address: 40000024, Write data: 39393939, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete: Data written to register 40000024 is 39393939 and pslverr is 0
-Scoreboard: Write to register 00000009: 39393939
+Scoreboard: Write reg[9] <= 39393939
 Monitor: Transaction: Address: 40000024, Write data: 39393939, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete
 Writing to register 40000028
-Scoreboard: Write to register 00000009: 39393939
+Scoreboard: Write reg[9] <= 39393939
 Write complete: Data written to register 40000028 is 3939393b and pslverr is 0
 Monitor: Transaction: Address: 40000028, Write data: 3939393b, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
-Scoreboard: Write to register 0000000a: 3939393b
+Scoreboard: Write reg[10] <= 3939393b
 Write complete
 Writing to register 4000002c
 Monitor: Transaction: Address: 4000002c, Write data: 3939393b, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete: Data written to register 4000002c is 3939393b and pslverr is 0
-Scoreboard: Write to register 0000000b: 3939393b
+Scoreboard: Write reg[11] <= 3939393b
 Monitor: Transaction: Address: 4000002c, Write data: 3939393b, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete
 Writing to register 40000030
-Scoreboard: Write to register 0000000b: 3939393b
+Scoreboard: Write reg[11] <= 3939393b
 Write complete: Data written to register 40000030 is 3939393d and pslverr is 0
 Monitor: Transaction: Address: 40000030, Write data: 3939393d, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
-Scoreboard: Write to register 0000000c: 3939393d
+Scoreboard: Write reg[12] <= 3939393d
 Write complete
 Writing to register 40000034
 Monitor: Transaction: Address: 40000034, Write data: 3939393d, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete: Data written to register 40000034 is 3939393d and pslverr is 0
-Scoreboard: Write to register 0000000d: 3939393d
+Scoreboard: Write reg[13] <= 3939393d
 Monitor: Transaction: Address: 40000034, Write data: 3939393d, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete
 Writing to register 40000038
-Scoreboard: Write to register 0000000d: 3939393d
+Scoreboard: Write reg[13] <= 3939393d
 Write complete: Data written to register 40000038 is 3939393f and pslverr is 0
 Monitor: Transaction: Address: 40000038, Write data: 3939393f, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
-Scoreboard: Write to register 0000000e: 3939393f
+Scoreboard: Write reg[14] <= 3939393f
 Write complete
 Writing to register 4000003c
 Monitor: Transaction: Address: 4000003c, Write data: 3939393f, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete: Data written to register 4000003c is 3939393f and pslverr is 0
-Scoreboard: Write to register 0000000f: 3939393f
+Scoreboard: Write reg[15] <= 3939393f
 Monitor: Transaction: Address: 4000003c, Write data: 3939393f, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete
 Writing to register 40000040
-Scoreboard: Write to register 0000000f: 3939393f
+Scoreboard: Write reg[15] <= 3939393f
 Write complete: Data written to register 40000040 is 39393939 and pslverr is 0
 Monitor: Transaction: Address: 40000040, Write data: 39393939, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
-Scoreboard: Write to register 00000010: 39393939
+Scoreboard: Write reg[16] <= 39393939
 Write complete
 Writing to register 40000044
 Monitor: Transaction: Address: 40000044, Write data: 39393939, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete: Data written to register 40000044 is 39393939 and pslverr is 0
-Scoreboard: Write to register 00000011: 39393939
+Scoreboard: Write reg[17] <= 39393939
 Monitor: Transaction: Address: 40000044, Write data: 39393939, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete
 Writing to register 40000048
-Scoreboard: Write to register 00000011: 39393939
+Scoreboard: Write reg[17] <= 39393939
 Write complete: Data written to register 40000048 is 3939393b and pslverr is 0
 Monitor: Transaction: Address: 40000048, Write data: 3939393b, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
-Scoreboard: Write to register 00000012: 3939393b
+Scoreboard: Write reg[18] <= 3939393b
 Write complete
 Writing to register 4000004c
 Monitor: Transaction: Address: 4000004c, Write data: 3939393b, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete: Data written to register 4000004c is 3939393b and pslverr is 0
-Scoreboard: Write to register 00000013: 3939393b
+Scoreboard: Write reg[19] <= 3939393b
 Monitor: Transaction: Address: 4000004c, Write data: 3939393b, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
 Write complete
 Reading from register 40000000
-Scoreboard: Write to register 00000013: 3939393b
+Scoreboard: Write reg[19] <= 3939393b
 Read complete: Data read from register 40000000 is 39393939 and pslverr is 0
 Monitor: Transaction: Address: 40000000, Write data: 3939393b, Read data: 39393939, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 00000000: DATA: 39393939 is OKAY!
+Scoreboard: Read reg[0] OK: 39393939
 Reading from register 40000004
 Monitor: Transaction: Address: 40000004, Write data: 3939393b, Read data: 00000001, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000004 is 00000001 and pslverr is 0
-Scoreboard: STATUS read (dynamic): DATA: 00000001
+Scoreboard: STATUS read (live): 00000001
 Monitor: Transaction: Address: 40000004, Write data: 3939393b, Read data: 00000001, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 40000008
-Scoreboard: STATUS read (dynamic): DATA: 00000001
+Scoreboard: STATUS read (live): 00000001
 Read complete: Data read from register 40000008 is 3939393b and pslverr is 0
 Monitor: Transaction: Address: 40000008, Write data: 3939393b, Read data: 3939393b, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 00000002: DATA: 3939393b is OKAY!
+Scoreboard: Read reg[2] OK: 3939393b
 Reading from register 4000000c
 Monitor: Transaction: Address: 4000000c, Write data: 3939393b, Read data: 3939393b, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 4000000c is 3939393b and pslverr is 0
-Scoreboard: Read from register 00000003: DATA: 3939393b is OKAY!
+Scoreboard: Read reg[3] OK: 3939393b
 Monitor: Transaction: Address: 4000000c, Write data: 3939393b, Read data: 3939393b, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 40000010
-Scoreboard: Read from register 00000003: DATA: 3939393b is OKAY!
+Scoreboard: Read reg[3] OK: 3939393b
 Read complete: Data read from register 40000010 is 3939393d and pslverr is 0
 Monitor: Transaction: Address: 40000010, Write data: 3939393b, Read data: 3939393d, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 00000004: DATA: 3939393d is OKAY!
+Scoreboard: Read reg[4] OK: 3939393d
 Reading from register 40000014
 Monitor: Transaction: Address: 40000014, Write data: 3939393b, Read data: 3939393d, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000014 is 3939393d and pslverr is 0
-Scoreboard: Read from register 00000005: DATA: 3939393d is OKAY!
+Scoreboard: Read reg[5] OK: 3939393d
 Monitor: Transaction: Address: 40000014, Write data: 3939393b, Read data: 3939393d, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 40000018
-Scoreboard: Read from register 00000005: DATA: 3939393d is OKAY!
+Scoreboard: Read reg[5] OK: 3939393d
 Read complete: Data read from register 40000018 is 3939393f and pslverr is 0
 Monitor: Transaction: Address: 40000018, Write data: 3939393b, Read data: 3939393f, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 00000006: DATA: 3939393f is OKAY!
+Scoreboard: Read reg[6] OK: 3939393f
 Reading from register 4000001c
 Monitor: Transaction: Address: 4000001c, Write data: 3939393b, Read data: 3939393f, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 4000001c is 3939393f and pslverr is 0
-Scoreboard: Read from register 00000007: DATA: 3939393f is OKAY!
+Scoreboard: Read reg[7] OK: 3939393f
 Monitor: Transaction: Address: 4000001c, Write data: 3939393b, Read data: 3939393f, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 40000020
-Scoreboard: Read from register 00000007: DATA: 3939393f is OKAY!
+Scoreboard: Read reg[7] OK: 3939393f
 Read complete: Data read from register 40000020 is 39393939 and pslverr is 0
 Monitor: Transaction: Address: 40000020, Write data: 3939393b, Read data: 39393939, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 00000008: DATA: 39393939 is OKAY!
+Scoreboard: Read reg[8] OK: 39393939
 Reading from register 40000024
 Monitor: Transaction: Address: 40000024, Write data: 3939393b, Read data: 39393939, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000024 is 39393939 and pslverr is 0
-Scoreboard: Read from register 00000009: DATA: 39393939 is OKAY!
+Scoreboard: Read reg[9] OK: 39393939
 Monitor: Transaction: Address: 40000024, Write data: 3939393b, Read data: 39393939, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 40000028
-Scoreboard: Read from register 00000009: DATA: 39393939 is OKAY!
+Scoreboard: Read reg[9] OK: 39393939
 Read complete: Data read from register 40000028 is 3939393b and pslverr is 0
 Monitor: Transaction: Address: 40000028, Write data: 3939393b, Read data: 3939393b, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 0000000a: DATA: 3939393b is OKAY!
+Scoreboard: Read reg[10] OK: 3939393b
 Reading from register 4000002c
 Monitor: Transaction: Address: 4000002c, Write data: 3939393b, Read data: 3939393b, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 4000002c is 3939393b and pslverr is 0
-Scoreboard: Read from register 0000000b: DATA: 3939393b is OKAY!
+Scoreboard: Read reg[11] OK: 3939393b
 Monitor: Transaction: Address: 4000002c, Write data: 3939393b, Read data: 3939393b, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 40000030
-Scoreboard: Read from register 0000000b: DATA: 3939393b is OKAY!
+Scoreboard: Read reg[11] OK: 3939393b
 Read complete: Data read from register 40000030 is 3939393d and pslverr is 0
 Monitor: Transaction: Address: 40000030, Write data: 3939393b, Read data: 3939393d, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 0000000c: DATA: 3939393d is OKAY!
+Scoreboard: Read reg[12] OK: 3939393d
 Reading from register 40000034
 Monitor: Transaction: Address: 40000034, Write data: 3939393b, Read data: 3939393d, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000034 is 3939393d and pslverr is 0
-Scoreboard: Read from register 0000000d: DATA: 3939393d is OKAY!
+Scoreboard: Read reg[13] OK: 3939393d
 Monitor: Transaction: Address: 40000034, Write data: 3939393b, Read data: 3939393d, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 40000038
-Scoreboard: Read from register 0000000d: DATA: 3939393d is OKAY!
+Scoreboard: Read reg[13] OK: 3939393d
 Read complete: Data read from register 40000038 is 3939393f and pslverr is 0
 Monitor: Transaction: Address: 40000038, Write data: 3939393b, Read data: 3939393f, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 0000000e: DATA: 3939393f is OKAY!
+Scoreboard: Read reg[14] OK: 3939393f
 Reading from register 4000003c
 Monitor: Transaction: Address: 4000003c, Write data: 3939393b, Read data: 3939393f, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 4000003c is 3939393f and pslverr is 0
-Scoreboard: Read from register 0000000f: DATA: 3939393f is OKAY!
+Scoreboard: Read reg[15] OK: 3939393f
 Monitor: Transaction: Address: 4000003c, Write data: 3939393b, Read data: 3939393f, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 40000040
-Scoreboard: Read from register 0000000f: DATA: 3939393f is OKAY!
+Scoreboard: Read reg[15] OK: 3939393f
 Read complete: Data read from register 40000040 is 39393939 and pslverr is 0
 Monitor: Transaction: Address: 40000040, Write data: 3939393b, Read data: 39393939, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 00000010: DATA: 39393939 is OKAY!
+Scoreboard: Read reg[16] OK: 39393939
 Reading from register 40000044
 Monitor: Transaction: Address: 40000044, Write data: 3939393b, Read data: 39393939, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000044 is 39393939 and pslverr is 0
-Scoreboard: Read from register 00000011: DATA: 39393939 is OKAY!
+Scoreboard: Read reg[17] OK: 39393939
 Monitor: Transaction: Address: 40000044, Write data: 3939393b, Read data: 39393939, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Reading from register 40000048
-Scoreboard: Read from register 00000011: DATA: 39393939 is OKAY!
+Scoreboard: Read reg[17] OK: 39393939
 Read complete: Data read from register 40000048 is 3939393b and pslverr is 0
 Monitor: Transaction: Address: 40000048, Write data: 3939393b, Read data: 3939393b, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 00000012: DATA: 3939393b is OKAY!
+Scoreboard: Read reg[18] OK: 3939393b
 Reading from register 4000004c
 Monitor: Transaction: Address: 4000004c, Write data: 3939393b, Read data: 3939393b, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 4000004c is 3939393b and pslverr is 0
-Scoreboard: Read from register 00000013: DATA: 3939393b is OKAY!
+Scoreboard: Read reg[19] OK: 3939393b
 Monitor: Transaction: Address: 4000004c, Write data: 3939393b, Read data: 3939393b, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: Read from register 00000013: DATA: 3939393b is OKAY!
+Scoreboard: Read reg[19] OK: 3939393b
 Test passed: TEST 3: FULL REGISTER SWEEP: Scoreboard passed
 ==================Test 4: BACK-TO-BACK WRITES==============
 Test passed: TEST 4: BACK-TO-BACK WRITES: Scoreboard passed
@@ -391,30 +391,30 @@ Reset deasserted
 Reading from register 40000004
 Monitor: Transaction: Address: 40000004, Write data: 07ba9dae, Read data: 00000001, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000004 is 00000001 and pslverr is 0
-Scoreboard: STATUS read (dynamic): DATA: 00000001
+Scoreboard: STATUS read (live): 00000001
 Monitor: Transaction: Address: 40000004, Write data: 07ba9dae, Read data: 00000001, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Writing to register 40000004
-Scoreboard: STATUS read (dynamic): DATA: 00000001
+Scoreboard: STATUS read (live): 00000001
 Write failed: pslverr asserted: 1
 Monitor: Transaction: Address: 40000004, Write data: 00000000, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 1, Ready: 1
 Write complete
 Reading from register 40000004
 Monitor: Transaction: Address: 40000004, Write data: 00000000, Read data: 00000003, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000004 is 00000003 and pslverr is 0
-Scoreboard: STATUS read (dynamic): DATA: 00000003
+Scoreboard: STATUS read (live): 00000003
 Monitor: Transaction: Address: 40000004, Write data: 00000000, Read data: 00000001, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Writing to register 40000000
-Scoreboard: STATUS read (dynamic): DATA: 00000001
+Scoreboard: STATUS read (live): 00000001
 Write complete: Data written to register 40000000 is 00000001 and pslverr is 0
 Monitor: Transaction: Address: 40000000, Write data: 00000001, Read data: 00000000, Is write: 1, Is read: 0, Slave error: 0, Ready: 1
-Scoreboard: Write to register 00000000: 00000001
+Scoreboard: Write reg[0] <= 00000001
 Write complete
 Reading from register 40000004
 Monitor: Transaction: Address: 40000004, Write data: 00000001, Read data: 00000001, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
 Read complete: Data read from register 40000004 is 00000001 and pslverr is 0
-Scoreboard: STATUS read (dynamic): DATA: 00000001
+Scoreboard: STATUS read (live): 00000001
 Monitor: Transaction: Address: 40000004, Write data: 00000001, Read data: 00000001, Is write: 0, Is read: 1, Slave error: 0, Ready: 1
-Scoreboard: STATUS read (dynamic): DATA: 00000001
+Scoreboard: STATUS read (live): 00000001
 Test passed: TEST 10: APB FSM STATUS: Scoreboard passed
 ========== FUNCTIONAL COVERAGE SUMMARY ==========
   Register bins (20):
@@ -448,7 +448,7 @@ Test passed: TEST 10: APB FSM STATUS: Scoreboard passed
 ================================================
 ==================All tests passed==============
 ================================================
-- C:/Personal/week-5/tb\tb_apb_slave.sv:257: Verilog $finish
+- C:/Personal/APB_SLAVE/tb\tb_apb_slave.sv:275: Verilog $finish
 - S i m u l a t i o n   R e p o r t: Verilator 5.046 2026-02-28
-- Verilator: $finish at 166us; walltime 0.029 s; speed 0.000 s/s
+- Verilator: $finish at 166us; walltime 0.025 s; speed 0.000 s/s
 - Verilator: cpu 0.000 s on 1 threads; allocated 5 MB
