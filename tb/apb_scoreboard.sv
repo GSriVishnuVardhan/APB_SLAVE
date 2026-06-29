@@ -13,16 +13,9 @@ module apb_scoreboard #(
     parameter NUM_CTRL_REGS = 4,
     parameter NUM_USER_REGS = 16,
     localparam NUM_REGS = NUM_CTRL_REGS + NUM_USER_REGS
-)();
-    // Mailbox handle is passed at runtime via set_mailbox() because Verilator
-    // does not support mailboxes in module port-lists.
-    mailbox mon_mbx;
-
-    // Setter to give the scoreboard the mailbox handle from the testbench
-    task set_mailbox(mailbox mb);
-        mon_mbx = mb;
-    endtask
-
+)(
+    mailbox #(apb_transaction) mon_mbx
+);
     bit verbose = 1;
     int err_count = 0;
 
